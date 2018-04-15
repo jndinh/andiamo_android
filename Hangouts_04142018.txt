@@ -1,0 +1,31 @@
+Group Project - Android Application
+Premium Goods
+
+Trello --> Work delegation
+
+What do we want the app to do?
+    1) Opening screen --> A menu with a small login buton on the top right.
+        Cart top right
+    2) View the menu
+    3) Make an order
+    4) Add items to cart
+    5) Display nutritional values on click
+    6) Destination time for delivery
+    
+Getting Location:
+    Yes. On opening of the app we will request for their locations to be 
+    enabled. If they say no, they should still be able to look at the menu and 
+    add items to cart. If they add items to cart and checkout without their 
+    locations on or without getting their address from their accounts, we use a 
+    dialog to open their locations must be turned out before checkout.
+    
+Time Calculation:
+    The server can respond with a fake lat/long and then take the users location
+    Or use google maps to calculate distance
+    
+Professor: Can show us a progress bar.
+    --> Don't have to, can just do whatever
+    
+Joanna and Nic will be working on the backend (pretty sure)
+    
+Work with AWS server that Nic has
