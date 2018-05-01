@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Andiamo</string>
+    <string name="home">HOME</string>
+    <string name="menu">MENU</string>
+    <string name="cart">CART</string>
+    <string name="store_locator">STORE LOCATOR</string>
+    <string name="delivery_tracker">DELIVERY TRACKER</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home_story">Andiamo has been cooking up fresh, homemade recipes since
+        1989, straight from Mama Lucida\'s kitchen. Our Commitment to using only fresh locally
+        sourced ingredients extends through our promise to deliver them quickly to your door.
+        Contact your local Andiamo to hear about catering options for large groups!</string>
+
+    <string name="home_location">We are located in the Maryland, D.C. and Virginia region. Check
+        out our STORE LOCATOR to find your local Andiamo subs and pizza!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
