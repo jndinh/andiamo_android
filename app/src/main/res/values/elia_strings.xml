@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">Andiamo</string>
     <string name="home">HOME</string>
@@ -8,7 +9,9 @@
     <string name="logReg">Login / Register</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="home_story">Andiamo has been cooking up fresh, homemade recipes since
+    <string name="our_story"><b>Our Story</b></string>
+    
+    <string name="home_story"><b>Andiamo!</b> has been cooking up fresh, homemade recipes since
         1989, straight from Mama Lucida\'s kitchen. Our Commitment to using only fresh locally
         sourced ingredients extends through our promise to deliver them quickly to your door.
         Contact your local Andiamo to hear about catering options for large groups!</string>

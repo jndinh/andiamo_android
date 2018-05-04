@@ -7,30 +7,72 @@
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
-        android:text="@string/home_story"
-        android:fontFamily="@font/vollkorn_regular"
-        android:textSize="16sp"
-        android:textColor="#ffffff"
-        android:textAlignment="center"/>
+        android:layout_weight="10"
+        android:textSize="35sp"
+        android:text="@string/our_story"
+        android:gravity="center"
+        android:fontFamily="@font/lobster_1_3"
+        android:textColor="@color/title"/>
 
-    <TextView
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50"
-        android:text="@string/home_location"
-        android:fontFamily="@font/vollkorn_regular"
-        android:textSize="16sp"
-        android:textColor="#ffba00"
-        android:textAlignment="center"/>
+        android:layout_weight="25"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="55"
+            android:text="@string/home_story"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="12sp"
+            android:textColor="#fffff"
+            android:textAlignment="center"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="45"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/grandma_bw"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/home_button"
+            android:text="@string/sa"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/home_button"
+            android:text=""/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
