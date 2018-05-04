@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView txtHome, txtMenu, txtCart, txtLocator, txtTracker;
+    TextView txtHome, txtMenu, txtCart, txtTracker;
     ImageButton btnAccount;
     String currentFragment;
 
@@ -28,25 +28,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //--------------------------------Start Initialization Functions--------------------------------
 
     //  initializeUI()
-    //      Binds the TextView variables txtHome, txtMenu, txtCart, txtLocator, txtTracker, and
+    //      Binds the TextView variables txtHome, txtMenu, txtCart, txtTracker, and
     //          btnAccount to the appropriate UI element
     private void initializeUI() {
         txtHome = (TextView) findViewById(R.id.txt_home);
         txtMenu = (TextView) findViewById(R.id.txt_menu);
         txtCart = (TextView) findViewById(R.id.txt_cart);
-        txtLocator = (TextView) findViewById(R.id.txt_store_locator);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
     }
 
     //  setListeners()
-    //      Sets onClickListeners to each of the variables txtHome, txtMenu, txtCart, txtLocator,
+    //      Sets onClickListeners to each of the variables txtHome, txtMenu, txtCart,
     //          txtTracker, and btnAccount
     private void setListeners() {
         txtHome.setOnClickListener(this);
         txtMenu.setOnClickListener(this);
         txtCart.setOnClickListener(this);
-        txtLocator.setOnClickListener(this);
         txtTracker.setOnClickListener(this);
         btnAccount.setOnClickListener(this);
     }
@@ -91,18 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentFragment = "CART";
     }
 
-    private void fragmentLocator() {
-        Log.d("my_ fragmentLocator", "Entered Fragment Locator");
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        LocatorFragment locatorFragment = new LocatorFragment();
-        fragmentTransaction.replace(R.id.fragment_container, locatorFragment);
-        fragmentTransaction.commit();
-
-        currentFragment = "LOCATOR";
-    }
-
     private void fragmentTracker() {
         Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
 
@@ -116,6 +102,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //--------------------------------End Fragment Switch Functions--------------------------------
+
+    //--------------------------------Start Login/Register Functions--------------------------------
+
+    private void loginRegister() {
+
+    }
+
+    //---------------------------------End Login/Register Functions---------------------------------
 
     //-------------------------------Start onClick Listener Functions-------------------------------
 
@@ -139,18 +133,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fragmentCart();
                 }
                 break;
-            case R.id.txt_store_locator:
-                if(!currentFragment.equals("LOCATOR")) {
-                    fragmentLocator();
-                }
-                break;
             case R.id.txt_delivery_tracker:
                 if(!currentFragment.equals("TRACKER")) {
                     fragmentTracker();
                 }
                 break;
             case R.id.btn_account:
-                //implement btn
+                loginRegister();
                 break;
         }
     }

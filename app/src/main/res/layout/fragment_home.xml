@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:layout_weight="50"
         android:text="@string/home_story"
-        android:fontFamily="serif"
+        android:fontFamily="@font/Vollkorn_Regular"
         android:textSize="16sp"
         android:textColor="#ffffff"
         android:textAlignment="center"/>
@@ -28,7 +28,7 @@
         android:layout_height="0dp"
         android:layout_weight="50"
         android:text="@string/home_location"
-        android:fontFamily="serif"
+        android:fontFamily="@font/Vollkorn_Regular"
         android:textSize="16sp"
         android:textColor="#ffba00"
         android:textAlignment="center"/>
