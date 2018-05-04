@@ -31,7 +31,7 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <TextView
+            <Button
                 android:id="@+id/txt_home"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
@@ -42,43 +42,62 @@
                 android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
-                android:text="@string/home"/>
+                android:text="@string/home"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
 
-            <TextView
+            <Button
                 android:id="@+id/txt_menu"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
+                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
-                android:text="@string/menu"/>
+                android:text="@string/menu"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
 
-            <TextView
+            <Button
                 android:id="@+id/txt_cart"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
+                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
-                android:text="@string/cart"/>
+                android:text="@string/cart"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
 
-            <TextView
+            <Button
                 android:id="@+id/txt_delivery_tracker"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
+                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
-                android:text="@string/delivery_tracker"/>
+                android:text="@string/delivery_tracker"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
 
         </LinearLayout>
 

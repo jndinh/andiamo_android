@@ -2,16 +2,22 @@ package com.example.pc.andiamo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView txtHome, txtMenu, txtCart, txtTracker;
+    Button txtHome, txtMenu, txtCart, txtTracker;
     ImageButton btnAccount;
     String currentFragment;
 
@@ -31,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //      Binds the TextView variables txtHome, txtMenu, txtCart, txtTracker, and
     //          btnAccount to the appropriate UI element
     private void initializeUI() {
-        txtHome = (TextView) findViewById(R.id.txt_home);
-        txtMenu = (TextView) findViewById(R.id.txt_menu);
-        txtCart = (TextView) findViewById(R.id.txt_cart);
-        txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
+        txtHome = (Button) findViewById(R.id.txt_home);
+        txtMenu = (Button) findViewById(R.id.txt_menu);
+        txtCart = (Button) findViewById(R.id.txt_cart);
+        txtTracker = (Button) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
     }
 
@@ -130,7 +136,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.txt_cart:
                 if(!currentFragment.equals("CART")) {
-                    fragmentCart();
+                   // fragmentCart();
+                    PopupWindow pw;
+                    try {
+                        // We need to get the instance of the LayoutInflater
+                        LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View layout = inflater.inflate(R.layout.popup,
+                                (ViewGroup) findViewById(R.id.cart_shell));
+                        pw = new PopupWindow(layout, 800, 1000, true);
+                        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case R.id.txt_delivery_tracker:
