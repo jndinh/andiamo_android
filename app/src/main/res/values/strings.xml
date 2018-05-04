@@ -5,6 +5,7 @@
     <string name="cart">CART</string>
     <string name="store_locator">STORE LOCATOR</string>
     <string name="delivery_tracker">DELIVERY TRACKER</string>
+    <string name="logReg">Login / Register</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home_story">Andiamo has been cooking up fresh, homemade recipes since

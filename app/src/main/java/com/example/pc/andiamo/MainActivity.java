@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtHome, txtMenu, txtCart, txtLocator, txtTracker;
+    ImageButton btnAccount;
     String currentFragment;
 
     @Override
@@ -18,33 +20,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initializeText();
+        initializeUI();
         setListeners();
         fragmentHome();
     }
 
     //--------------------------------Start Initialization Functions--------------------------------
 
-    //  initializeText()
-    //      Binds the TextView variables txtHome, txtMenu, txtCart, txtLocator, and txtTracker to
-    //          the appropriate UI element
-    private void initializeText() {
+    //  initializeUI()
+    //      Binds the TextView variables txtHome, txtMenu, txtCart, txtLocator, txtTracker, and
+    //          btnAccount to the appropriate UI element
+    private void initializeUI() {
         txtHome = (TextView) findViewById(R.id.txt_home);
         txtMenu = (TextView) findViewById(R.id.txt_menu);
         txtCart = (TextView) findViewById(R.id.txt_cart);
         txtLocator = (TextView) findViewById(R.id.txt_store_locator);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
+        btnAccount = (ImageButton) findViewById(R.id.btn_account);
     }
 
     //  setListeners()
     //      Sets onClickListeners to each of the variables txtHome, txtMenu, txtCart, txtLocator,
-    //          and txtTracker
+    //          txtTracker, and btnAccount
     private void setListeners() {
         txtHome.setOnClickListener(this);
         txtMenu.setOnClickListener(this);
         txtCart.setOnClickListener(this);
         txtLocator.setOnClickListener(this);
         txtTracker.setOnClickListener(this);
+        btnAccount.setOnClickListener(this);
     }
 
     //---------------------------------End Initialization Functions---------------------------------
@@ -144,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(!currentFragment.equals("TRACKER")) {
                     fragmentTracker();
                 }
+                break;
+            case R.id.btn_account:
+                //implement btn
                 break;
         }
     }
