@@ -3,15 +3,21 @@ package com.example.pc.andiamo;
 
 class Constants {
     public static final int SPLASH_TIME_OUT = 2500;
-    public static final String WEB_SERVICE_URL = "ec2-34-239-146-206.compute-1.amazonaws.com:8003/webservice/";
-    public static final String AUTHORIZATION_HEADER = "ZNLhfFrapAOTqjcWrseVne4PBfrHkcYG";
 
+    // Endpoints && Web Services
+    public static final String WEB_SERVICE_URL = "http://ec2-34-239-146-206.compute-1.amazonaws.com:8003/webservice/";
+    public static final String AUTHORIZATION_HEADER = "ZNLhfFrapAOTqjcWrseVne4PBfrHkcYG";
     public static final String LOGIN_EP = WEB_SERVICE_URL + "login";
     public static final String REGISTER_EP = WEB_SERVICE_URL + "register";
     public static final String STORES_EP = WEB_SERVICE_URL + "get_stores";
     public static final String PLACE_ORDER_EP = WEB_SERVICE_URL + "place_orders";
     public static final String GET_ORDER_EP = WEB_SERVICE_URL + "get_order";
 
+    // Dessert && Drink items
+    public static final float CUPCAKE_PRICE = 3.99f;
+    public static final float DRINK_PRICE = 2.99f;
+    public static final float BROWNIE_PRICE = 2.99f;
+    public static final float COOKIE_PRICE = 2.99f;
 
     // Menu Item Prices
     public enum MenuItem{
@@ -57,10 +63,4 @@ class Constants {
             return price;
         }
     }
-
-    public static final float CUPCAKE_PRICE = 3.99f;
-    public static final float DRINK_PRICE = 2.99f;
-    public static final float BROWNIE_PRICE = 2.99f;
-    public static final float COOKIE_PRICE = 2.99f;
-    // Menu Item Prices
 }

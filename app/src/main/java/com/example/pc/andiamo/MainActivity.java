@@ -68,11 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void fragmentMenu() {
         Log.d("my_ fragmentMenu", "Entered Fragment Menu");
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MenuFragment menuFragment = new MenuFragment();
-        fragmentTransaction.replace(R.id.fragment_container, menuFragment);
-        fragmentTransaction.commit();
+        //FragmentManager fragmentManager = getFragmentManager();
+        //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //MenuFragment menuFragment = new MenuFragment();
+        //fragmentTransaction.replace(R.id.fragment_container, menuFragment);
+        //fragmentTransaction.commit();
 
         currentFragment = "MENU";
     }
