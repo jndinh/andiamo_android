@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MenuFragment menuFragment = new MenuFragment();
+        PizzaMenuFragment menuFragment = new PizzaMenuFragment();
         fragmentTransaction.replace(R.id.fragment_container, menuFragment);
         fragmentTransaction.commit();
 
