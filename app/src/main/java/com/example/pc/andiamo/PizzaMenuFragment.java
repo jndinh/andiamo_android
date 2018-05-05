@@ -6,10 +6,11 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 
@@ -21,6 +22,12 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
     ImageButton increment0, increment1, increment2, increment3, increment4, increment5, increment6, increment7;
     ImageButton decrement0, decrement1, decrement2, decrement3, decrement4, decrement5, decrement6, decrement7;
     TextView item0, item1, item2, item3, item4, item5, item6, item7 ;
+
+    Button updateCart;
+    EditText specialRequest;
+
+    int numItems[] = new int[8];
+    ArrayList<TextView> itemQuantities = new ArrayList<>();
 
     public PizzaMenuFragment() {
         // Required empty public constructor
@@ -59,6 +66,12 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         item6 = view.findViewById(R.id.item6quantity);
         item7 = view.findViewById(R.id.item7quantity);
 
+        updateCart = view.findViewById(R.id.updateCartButton);
+
+        specialRequest = view.findViewById(R.id.specialRequest);
+
+        updateCart.setOnClickListener(this);
+
         increment0.setOnClickListener(this);
         increment1.setOnClickListener(this);
         increment2.setOnClickListener(this);
@@ -76,6 +89,15 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         decrement5.setOnClickListener(this);
         decrement6.setOnClickListener(this);
         decrement7.setOnClickListener(this);
+
+        itemQuantities.add(item0);
+        itemQuantities.add(item1);
+        itemQuantities.add(item2);
+        itemQuantities.add(item3);
+        itemQuantities.add(item4);
+        itemQuantities.add(item5);
+        itemQuantities.add(item6);
+        itemQuantities.add(item7);
 
         return view;
     }
@@ -138,6 +160,22 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
             case R.id.increment7:
                 incrementValue(item7);
                 break;
+            case R.id.updateCartButton:
+                pushItemsToCart();
+                break;
+        }
+    }
+
+    private void pushItemsToCart() {
+        for(int i=0;i<itemQuantities.size();i++){
+            numItems[i] = Integer.parseInt(itemQuantities.get(i).getText().toString());
+            itemQuantities.get(i).setText("0");
+        }
+        // TODO:
+        // send numbers to cart
+
+        for(int i=0;i<numItems.length;i++){
+            numItems[i] = 0;
         }
     }
 

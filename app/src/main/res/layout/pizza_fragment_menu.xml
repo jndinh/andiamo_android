@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/solidslatebackground"
     android:orientation="vertical"
     tools:context=".PizzaMenuFragment">
 
@@ -25,8 +26,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_height="15dp"
+        android:background="@android:color/transparent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +45,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p0_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -56,7 +57,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -125,7 +127,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p1_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -137,7 +139,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -206,7 +209,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p2_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -218,7 +221,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -288,7 +292,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p3_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -300,7 +304,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -369,7 +374,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p4_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -381,7 +386,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -450,7 +456,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p5_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -462,7 +468,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -531,7 +538,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p6_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -543,7 +550,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -612,7 +620,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/p7_name"
                 android:textColor="@android:color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -624,7 +632,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/desc_green"
                 android:textSize="8sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
         <Space
@@ -690,7 +699,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/specialRequest"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
