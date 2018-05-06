@@ -1,6 +1,7 @@
 package com.example.pc.andiamo;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,12 +20,14 @@ import java.util.ArrayList;
  */
 public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
 
-    ImageButton increment0, increment1, increment2, increment3, increment4, increment5, increment6, increment7;
-    ImageButton decrement0, decrement1, decrement2, decrement3, decrement4, decrement5, decrement6, decrement7;
-    TextView item0, item1, item2, item3, item4, item5, item6, item7 ;
+    private ImageButton increment0, increment1, increment2, increment3, increment4, increment5, increment6, increment7;
+    private ImageButton decrement0, decrement1, decrement2, decrement3, decrement4, decrement5, decrement6, decrement7;
+    private TextView item0, item1, item2, item3, item4, item5, item6, item7 ;
 
-    Button updateCart;
-    EditText specialRequest;
+    private Button updateCart;
+    private EditText specialRequest;
+
+    private AddtoCart addtoCart;
 
     int numItems[] = new int[8];
     ArrayList<TextView> itemQuantities = new ArrayList<>();
@@ -171,8 +174,8 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
             numItems[i] = Integer.parseInt(itemQuantities.get(i).getText().toString());
             itemQuantities.get(i).setText("0");
         }
-        // TODO:
-        // send numbers to cart
+
+        addtoCart.getQuanities(0);
 
         for(int i=0;i<numItems.length;i++){
             numItems[i] = 0;
@@ -191,5 +194,19 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
             current--;
             t.setText(Integer.toString(current));
         }
+    }
+
+    public interface AddtoCart{
+        void getQuanities(int offset);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        addtoCart = (AddtoCart) context;
+    }
+
+    public int[] getNumItems() {
+        return numItems;
     }
 }
