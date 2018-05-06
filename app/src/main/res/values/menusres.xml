@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- DROP DOWN MENU -->
+    <string name="pizza">PIZZA</string>
+    <string name="subs">SANDWICHES</string>
+    <string name="desserts">DESSERTS &amp; DRINKS</string>
+
+    <string-array name="dropdown_menu">
+        <item>MENU</item>
+        <item>PIZZA</item>
+        <item>SANDWICHES</item>
+        <item>DESSERTS &amp; DRINKS</item>
+    </string-array>
+
     <!-- PIZZAS -->
     <string name="pizza_description">Our family-friendls pizzas are all 18" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request</string>
 

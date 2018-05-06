@@ -6,12 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Objects;
 
-    TextView txtHome, txtMenu, txtCart, txtTracker;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+    TextView txtHome, txtCart, txtTracker;
+    Spinner spinner;
     ImageButton btnAccount;
     String currentFragment;
 
@@ -32,18 +39,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //          btnAccount to the appropriate UI element
     private void initializeUI() {
         txtHome = (TextView) findViewById(R.id.txt_home);
-        txtMenu = (TextView) findViewById(R.id.txt_menu);
         txtCart = (TextView) findViewById(R.id.txt_cart);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
+        spinner = (Spinner) findViewById(R.id.spinner_menu);
+
+        // Initializing a String Array
+        String[] menu = new String[]{
+                "MENU",
+                "PIZZA",
+                "SANDWICHES",
+                "DESSERTS & DRINKS",
+        };
+
+        // Initializing an ArrayAdapter
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, menu);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(spinnerArrayAdapter);
     }
 
     //  setListeners()
     //      Sets onClickListeners to each of the variables txtHome, txtMenu, txtCart,
     //          txtTracker, and btnAccount
     private void setListeners() {
+        spinner.setOnItemSelectedListener(this);
         txtHome.setOnClickListener(this);
-        txtMenu.setOnClickListener(this);
         txtCart.setOnClickListener(this);
         txtTracker.setOnClickListener(this);
         btnAccount.setOnClickListener(this);
@@ -101,6 +121,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentFragment = "TRACKER";
     }
 
+    private void fragmentDessertDrink() {
+        Log.d("my_ fragmentDnD", "Entered Fragment Desserts & Drinks");
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DessertDrinkMenuFragment dessertFragment = new DessertDrinkMenuFragment();
+        fragmentTransaction.replace(R.id.fragment_container, dessertFragment);
+        fragmentTransaction.commit();
+
+        currentFragment = "DESSERT";
+    }
+
+    private void fragmentPizza() {
+        Log.d("my_ fragmentPizza", "Entered Fragment Pizza");
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PizzaMenuFragment pizzaFragment = new PizzaMenuFragment();
+        fragmentTransaction.replace(R.id.fragment_container, pizzaFragment);
+        fragmentTransaction.commit();
+
+        currentFragment = "PIZZA";
+    }
+
     //--------------------------------End Fragment Switch Functions--------------------------------
 
     //--------------------------------Start Login/Register Functions--------------------------------
@@ -123,11 +167,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fragmentHome();
                 }
                 break;
-            case R.id.txt_menu:
-                if(!currentFragment.equals("MENU")) {
-                    fragmentMenu();
-                }
-                break;
             case R.id.txt_cart:
                 if(!currentFragment.equals("CART")) {
                     fragmentCart();
@@ -142,6 +181,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 loginRegister();
                 break;
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String selectedItem = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(), "Selected" + selectedItem + " " + Integer.toString(i), Toast.LENGTH_SHORT).show();
+
+        if (Objects.equals(selectedItem, "PIZZA")) {
+            fragmentPizza();
+        } else if (Objects.equals(selectedItem, "SANDWICHES")) {
+
+        } else if (Objects.equals(selectedItem, "DESSERTS & DRINKS")) {
+            //fragmentDessertDrink();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     //--------------------------------End onClick Listener Functions--------------------------------
