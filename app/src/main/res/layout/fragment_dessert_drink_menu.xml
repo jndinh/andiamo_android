@@ -151,7 +151,7 @@
                     android:textColor="@color/desc_green"
                     android:textSize="12sp"
                     android:textStyle="italic"
-                    android:paddingBottom="7dp" />
+                    android:paddingBottom="7.5dp" />
 
                 <Space
                     android:layout_width="match_parent"

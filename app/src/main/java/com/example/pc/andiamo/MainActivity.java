@@ -14,9 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
+import static com.example.pc.andiamo.Constants.DES_OFFSET;
+import static com.example.pc.andiamo.Constants.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DessertDrinkMenuFragment.DessertMenuListener {
+    int[] totalCart = new int[29];
     TextView txtHome, txtCart, txtTracker;
     Spinner spinner;
     ImageButton btnAccount;
@@ -127,10 +130,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DessertDrinkMenuFragment dessertFragment = new DessertDrinkMenuFragment();
+
         fragmentTransaction.replace(R.id.fragment_container, dessertFragment);
         fragmentTransaction.commit();
 
-        currentFragment = "DESSERT";
+        currentFragment = "DESSERT & DRINKS";
     }
 
     private void fragmentPizza() {
@@ -154,6 +158,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
+
+    //---------------------------------Start Cart Transactions---------------------------------
+
+
+
+
+
+    //---------------------------------End Cart Transactions---------------------------------
 
     //-------------------------------Start onClick Listener Functions-------------------------------
 
@@ -193,13 +205,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (Objects.equals(selectedItem, "SANDWICHES")) {
 
         } else if (Objects.equals(selectedItem, "DESSERTS & DRINKS")) {
-            //fragmentDessertDrink();
+            fragmentDessertDrink();
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void getDesCart(int[] cart) {
+        if (cart.length > 0) {
+            // Add to total cart
+            for(int i = 0; i < cart.length; i++) {
+                totalCart[i + DES_OFFSET] = cart[i];
+                Log.d("cart", MenuItem.values()[i + DES_OFFSET].getName() + " " + Integer.toString(cart[i]));
+            }
+        }
     }
 
     //--------------------------------End onClick Listener Functions--------------------------------
