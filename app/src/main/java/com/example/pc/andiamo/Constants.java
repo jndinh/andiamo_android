@@ -48,8 +48,7 @@ class Constants {
         DCOKE("Diet Coke", "", 2.99f, 25),
         SPT("Sprite", "", 2.99f, 26),
         GIN("Gingerale", "", 2.99f, 27),
-        LEM("Lemonade", "", 2.99f, 28)
-        ;
+        LEM("Lemonade", "", 2.99f, 28);
 
         private String name;
         private String desc;
@@ -75,10 +74,4 @@ class Constants {
             return price;
         }
     }
-
-    public static final float CUPCAKE_PRICE = 3.99f;
-    public static final float DRINK_PRICE = 2.99f;
-    public static final float BROWNIE_PRICE = 2.99f;
-    public static final float COOKIE_PRICE = 2.99f;
-    // Menu Item Prices
 }
