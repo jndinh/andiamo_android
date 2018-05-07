@@ -5,25 +5,19 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
+import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Objects;
-import static com.example.pc.andiamo.Constants.DES_OFFSET;
-import static com.example.pc.andiamo.Constants.MenuItem;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart {
 
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, DessertDrinkMenuFragment.DessertMenuListener {
-    int[] totalCart = new int[29];
-    TextView txtHome, txtCart, txtTracker;
-    Spinner spinner;
+    TextView txtHome, txtCart, txtTracker, txtMenu;
     ImageButton btnAccount;
     String currentFragment;
+
+    int masterCart[] = new int[29];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,31 +39,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtCart = (TextView) findViewById(R.id.txt_cart);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
-        spinner = (Spinner) findViewById(R.id.spinner_menu);
 
-        // Initializing a String Array
-        String[] menu = new String[]{
-                "MENU",
-                "PIZZA",
-                "SANDWICHES",
-                "DESSERTS & DRINKS",
-        };
-
-        // Initializing an ArrayAdapter
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, menu);
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(spinnerArrayAdapter);
+        txtMenu = (TextView) findViewById(R.id.txt_menu);
     }
 
     //  setListeners()
     //      Sets onClickListeners to each of the variables txtHome, txtMenu, txtCart,
     //          txtTracker, and btnAccount
     private void setListeners() {
-        spinner.setOnItemSelectedListener(this);
         txtHome.setOnClickListener(this);
         txtCart.setOnClickListener(this);
         txtTracker.setOnClickListener(this);
         btnAccount.setOnClickListener(this);
+        txtMenu.setOnClickListener(this);
     }
 
     //---------------------------------End Initialization Functions---------------------------------
@@ -130,11 +112,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DessertDrinkMenuFragment dessertFragment = new DessertDrinkMenuFragment();
-
         fragmentTransaction.replace(R.id.fragment_container, dessertFragment);
         fragmentTransaction.commit();
 
-        currentFragment = "DESSERT & DRINKS";
+        currentFragment = "DESSERT";
     }
 
     private void fragmentPizza() {
@@ -143,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PizzaMenuFragment pizzaFragment = new PizzaMenuFragment();
-        fragmentTransaction.replace(R.id.fragment_container, pizzaFragment);
+        fragmentTransaction.replace(R.id.fragment_container, pizzaFragment, "pizza");
         fragmentTransaction.commit();
 
         currentFragment = "PIZZA";
@@ -158,14 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
-
-    //---------------------------------Start Cart Transactions---------------------------------
-
-
-
-
-
-    //---------------------------------End Cart Transactions---------------------------------
 
     //-------------------------------Start onClick Listener Functions-------------------------------
 
@@ -192,38 +165,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_account:
                 loginRegister();
                 break;
-        }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String selectedItem = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), "Selected" + selectedItem + " " + Integer.toString(i), Toast.LENGTH_SHORT).show();
-
-        if (Objects.equals(selectedItem, "PIZZA")) {
-            fragmentPizza();
-        } else if (Objects.equals(selectedItem, "SANDWICHES")) {
-
-        } else if (Objects.equals(selectedItem, "DESSERTS & DRINKS")) {
-            fragmentDessertDrink();
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-    @Override
-    public void getDesCart(int[] cart) {
-        if (cart.length > 0) {
-            // Add to total cart
-            for(int i = 0; i < cart.length; i++) {
-                totalCart[i + DES_OFFSET] = cart[i];
-                Log.d("cart", MenuItem.values()[i + DES_OFFSET].getName() + " " + Integer.toString(cart[i]));
-            }
+            case R.id.txt_menu:
+                runPopupMenu();
+                break;
         }
     }
 
     //--------------------------------End onClick Listener Functions--------------------------------
+
+    public void runPopupMenu(){
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, txtMenu);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_choices, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.pizzaChoice:
+                        fragmentPizza();
+                        break;
+                    case R.id.subChoice:
+                        //fragmentSubs();
+                        break;
+                    case R.id.dndChoice:
+                        //dndFragment();
+                        break;
+                }
+                return true;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    @Override
+    public void getQuanities(int[] cart, int offset) {
+        if (cart.length > 0) {
+            for(int i=0;i<cart.length;i++){
+                masterCart[i+offset] += cart[i];
+            }
+        }
+
+    }
 }

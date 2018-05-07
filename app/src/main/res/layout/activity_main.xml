@@ -43,14 +43,17 @@
                 android:textAlignment="center"
                 android:text="@string/home"/>
 
-            <Spinner
-                android:id="@+id/spinner_menu"
+            <TextView
+                android:id="@+id/txt_menu"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="25"
-                android:background="@android:color/transparent"
                 android:gravity="center"
-                android:popupBackground="@drawable/solidslatebackground" />
+                android:fontFamily="@font/lato_regular"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:text="@string/menu"/>
 
             <TextView
                 android:id="@+id/txt_cart"
