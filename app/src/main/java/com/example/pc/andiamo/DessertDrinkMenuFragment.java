@@ -164,7 +164,7 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
         }
 
         // Passing cart to activity...
-        addtoCart.getQuanities(numItems, DES_OFFSET);
+        addtoCart.getQuantities(numItems, DES_OFFSET, "");
     }
 
     @Override
@@ -273,6 +273,6 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
     }
 
     public interface AddtoCart{
-        void getQuanities(int cart[], int offset);
+        void getQuantities(int cart[], int offset, String requests);
     }
 }
