@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lobster_1_3"
-            android:text="......................................."
+            android:text="............................."
             android:textAlignment="center"
             android:textColor="@color/andiamo_yellow"
             android:textSize="36sp" />

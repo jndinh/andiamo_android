@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.pc.andiamo.Constants.DES_OFFSET;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DessertDrinkMenuFragment.DessertMenuListener} interface
+ * {@link DessertDrinkMenuFragment.AddtoCart} interface
  * to handle interaction events.
  */
 public class DessertDrinkMenuFragment extends Fragment implements View.OnClickListener{
@@ -31,7 +33,7 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
     ArrayList<TextView> itemQuantities = new ArrayList<>();
 
 
-    private DessertMenuListener mListener;
+    private AddtoCart addtoCart;
 
     public DessertDrinkMenuFragment() {
         // Required empty public constructor
@@ -162,24 +164,24 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
         }
 
         // Passing cart to activity...
-        mListener.getDesCart(numItems);
+        addtoCart.getQuanities(numItems, DES_OFFSET);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof DessertMenuListener) {
-            mListener = (DessertMenuListener) context;
+        if (context instanceof AddtoCart) {
+            addtoCart = (AddtoCart) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement DesserMenuListener");
+                    + " must implement AddtoCatListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        addtoCart = null;
     }
 
     @Override
@@ -270,18 +272,7 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface DessertMenuListener {
-        // TODO: Update argument type and name
-        void getDesCart(int[] cart);
+    public interface AddtoCart{
+        void getQuanities(int cart[], int offset);
     }
 }
