@@ -11,7 +11,8 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
     ImageButton btnAccount;
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //fragmentSubs();
                         break;
                     case R.id.dndChoice:
-                        //dndFragment();
+                        fragmentDessertDrink();
                         break;
                 }
                 return true;
@@ -203,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (cart.length > 0) {
             for(int i=0;i<cart.length;i++){
                 masterCart[i+offset] += cart[i];
+                Log.d("cart", Constants.MenuItem.values()[i + offset].name() + " " + Integer.toString(cart[i]));
             }
         }
 
