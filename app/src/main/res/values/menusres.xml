@@ -6,7 +6,8 @@
     <string name="desserts">DESSERTS &amp; DRINKS</string>
 
     <!-- PIZZAS -->
-    <string name="pizza_description">Our family-friendls pizzas are all 18" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request</string>
+    <string name="pizza_description">Our family-friendls pizzas are all 18" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request.</string>
+    <string name="sub_description">All of our bread is baked in house in the morning in our fire brick oven! We locally source all of our produce to ensure that it is GMO and pesticide free. Gluten free bread is available upon request.</string>
 
     <string name="p0_name">Your Basic Pie</string>
     <string name="p0_desc">Zesty Marinara Sauce, Mozzarella &amp; Parmesian</string>
@@ -56,7 +57,7 @@
 
     <string name="s3_name">Bacon, Lettuce, and Bacon</string>
     <string name="s3_desc">Bacon, Lettuce, Tomato, Pesto Mayo on our Touscany Toast</string>
-    <string name="s3_price">$9.99</string>
+    <string name="s3_price">$10.99</string>
 
     <string name="s4_name">Margherita Sandwich</string>
     <string name="s4_desc">Mozzarella, Fresh Tomatoes, Marinara, Pesto, Spinach, Basil on a Baguette</string>
