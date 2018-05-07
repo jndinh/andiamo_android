@@ -199,12 +199,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void getQuanities(int offset) {
-        FragmentManager fragmentManager = getFragmentManager();
-        PizzaMenuFragment pizzaMenuFragment = (PizzaMenuFragment) fragmentManager.findFragmentByTag("pizza");
-        int itemQuantities[] = pizzaMenuFragment.getNumItems();
-        for(int i=0;i<itemQuantities.length;i++){
-            masterCart[i+offset] += itemQuantities[i];
+    public void getQuanities(int[] cart, int offset) {
+        if (cart.length > 0) {
+            for(int i=0;i<cart.length;i++){
+                masterCart[i+offset] += cart[i];
+            }
         }
+
     }
 }

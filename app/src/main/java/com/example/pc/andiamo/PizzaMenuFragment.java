@@ -175,7 +175,8 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
             itemQuantities.get(i).setText("0");
         }
 
-        addtoCart.getQuanities(0);
+        addtoCart.getQuanities(numItems, 0);
+
 
         for(int i=0;i<numItems.length;i++){
             numItems[i] = 0;
@@ -197,7 +198,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface AddtoCart{
-        void getQuanities(int offset);
+        void getQuanities(int cart[], int offset);
     }
 
     @Override
@@ -206,7 +207,4 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         addtoCart = (AddtoCart) context;
     }
 
-    public int[] getNumItems() {
-        return numItems;
-    }
 }
