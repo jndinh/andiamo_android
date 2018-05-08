@@ -2,11 +2,20 @@ package com.example.pc.andiamo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,10 +24,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton btnAccount;
     String currentFragment;
 
+    private PopupWindow trackerPopup;
+    private LayoutInflater layoutInflater;
+    private FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        frameLayout = (FrameLayout) findViewById(R.id.root_layout);
 
         initializeUI();
         setListeners();
@@ -90,6 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void fragmentTracker() {
+        startActivity(new Intent(MainActivity.this, TrackerPopup.class));
+        Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
+        currentFragment = "TRACKER";
+
+
+
+
+        /*
         Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -99,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
 
         currentFragment = "TRACKER";
+        */
     }
 
     //--------------------------------End Fragment Switch Functions--------------------------------
