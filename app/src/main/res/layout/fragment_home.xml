@@ -33,7 +33,7 @@
             android:text="@string/home_story"
             android:fontFamily="@font/lato_regular"
             android:textSize="12sp"
-            android:textColor="#fffff"
+            android:textColor="#ffffff"
             android:textAlignment="center"/>
 
         <ImageView
@@ -61,7 +61,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/home_button"
-            android:text="@string/sa"/>
+            android:text=""/>
 
         <Button
             android:layout_width="0dp"
