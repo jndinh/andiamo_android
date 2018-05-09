@@ -2,6 +2,7 @@ package com.example.pc.andiamo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,22 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static com.example.pc.andiamo.Constants.AUTHORIZATION_HEADER;
+import static com.example.pc.andiamo.Constants.REGISTER_EP;
+import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
@@ -224,4 +241,113 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    //---------------------------------WEB ASYNC SERVICES---------------------------------
+
+    /**
+     * To use this, simply call: new Register(fname, lname, email, password, street_address, city, state, zip_code).execute();
+     * or if the user has a line number: new Register(fname, lname, email, password, street_address, city, state, zip_code, line_number).execute()
+     */
+    private class Register extends AsyncTask<Void, Void, Boolean>
+    {
+        String fname, lname, email, password, street_address, city, state, zip_code, line_number;
+        JSONObject responseData;
+
+        Register(String fname, String lname, String email, String password, String street_address, String city, String state, String zip_code) {
+            this.fname = fname;
+            this.lname = lname;
+            this.email = email;
+            this.password = password;
+            this.street_address = street_address;
+            this.city = city;
+            this.state = state;
+            this.zip_code = zip_code;
+        }
+
+        Register(String fname, String lname, String email, String password, String street_address, String city, String state, String zip_code, String line_number) {
+            this.fname = fname;
+            this.lname = lname;
+            this.email = email;
+            this.password = password;
+            this.street_address = street_address;
+            this.city = city;
+            this.state = state;
+            this.zip_code = zip_code;
+            this.line_number = line_number;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            //this method will be running on background thread so don't update UI from here
+            //do your long running http tasks here,you don't want to pass argument and u can access the parent class' variable url over here
+
+            try {
+                // building json...
+                JSONObject data = new JSONObject();
+                data.put("fname", fname);
+                data.put("lname", lname);
+                data.put("email", email);
+                data.put("password", password);
+                data.put("street_address", street_address);
+                data.put("city", city);
+                data.put("state", state);
+                data.put("zip_code", zip_code);
+
+                // optional parameter
+                if (line_number != null)
+                    data.put("line_number", line_number);
+
+                // building post request
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, data.toString());
+                Request request = new Request.Builder()
+                        .url(REGISTER_EP)
+                        .post(body)
+                        .addHeader("AUTHORIZATION", AUTHORIZATION_HEADER)
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                if (response.body() == null) return false;
+                String strResponse = response.body().string();
+                final int code = response.code();
+                responseData = new JSONObject(strResponse);
+
+                Log.d("webtag", strResponse);
+
+                if (code == 200) {
+                    return true;
+                }
+
+                return false;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+
+            if (result) {
+                Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_SHORT).show();
+
+            } else {
+                try {
+                    // something went wrong
+                    String data = (String) responseData.get("data");
+                    Toast.makeText(getApplicationContext(), data, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
 }
