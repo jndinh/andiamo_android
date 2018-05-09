@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtCart = (TextView) findViewById(R.id.txt_cart);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
-
         txtMenu = (TextView) findViewById(R.id.txt_menu);
     }
 
@@ -148,8 +147,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //--------------------------------Start Login/Register Functions--------------------------------
 
+    //loginRegister()
+    //  create a dialogFragment that showcases the 
     private void loginRegister() {
-
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
