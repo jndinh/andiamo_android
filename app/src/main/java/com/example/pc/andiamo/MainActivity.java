@@ -239,11 +239,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("cart", Constants.MenuItem.values()[i + offset].getName() + " " + Integer.toString(cart[i]));
             }
         }
-
     }
 
+    
     //---------------------------------WEB ASYNC SERVICES---------------------------------
-
     /**
      * To use this, simply call: new Register(fname, lname, email, password, street_address, city, state, zip_code).execute();
      * or if the user has a line number: new Register(fname, lname, email, password, street_address, city, state, zip_code, line_number).execute()
@@ -308,6 +307,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .addHeader("Content-Type", "application/json")
                         .build();
 
+                // parsing response...
                 Response response = client.newCall(request).execute();
                 if (response.body() == null) return false;
                 String strResponse = response.body().string();
@@ -345,6 +345,71 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+
+        }
+    }
+
+    /**
+     * To use this, simply call: new Login(email, password).execute();
+     */
+    private class Login extends AsyncTask<Void, Void, Boolean>
+    {
+        String email;
+        String password;
+
+        Login(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            //this method will be running on background thread so don't update UI from here
+            //do your long running http tasks here,you don't want to pass argument and u can access the parent class' variable url over here
+
+            OkHttpClient client = new OkHttpClient();
+            String query = "email=" + email + "&password=" + password;
+
+            // building get request
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            RequestBody body = RequestBody.create(mediaType, query);
+            Request request = new Request.Builder()
+                    .url(LOGIN_EP)
+                    .post(body)
+                    .addHeader("AUTHORIZATION", AUTHORIZATION_HEADER)
+                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                    .build();
+
+            // parsing response
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.body() == null) return false;
+                String strResponse = response.body().string();
+                final int code = response.code();
+
+                Log.d("webtag", strResponse);
+
+                if (code == 200) {
+                    return true;
+                }
+
+                return false;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+
+            if (result) {
+                Toast.makeText(getApplicationContext(), "Logged in.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid email/password.", Toast.LENGTH_SHORT).show();
             }
 
         }
