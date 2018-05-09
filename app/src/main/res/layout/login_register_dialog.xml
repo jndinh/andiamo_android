@@ -15,7 +15,6 @@
         android:gravity="center"
 
         android:fontFamily="@font/lato_regular"
-
         android:textColor="#000"
         android:textSize="18sp"
         android:text="@string/account_info"/>
