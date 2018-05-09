@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
+public class SandwichMenuFragment extends Fragment implements View.OnClickListener{
 
     private ImageButton increment0, increment1, increment2, increment3, increment4, increment5, increment6, increment7;
     private ImageButton decrement0, decrement1, decrement2, decrement3, decrement4, decrement5, decrement6, decrement7;
@@ -32,7 +32,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
     int numItems[] = new int[8];
     ArrayList<TextView> itemQuantities = new ArrayList<>();
 
-    public PizzaMenuFragment() {
+    public SandwichMenuFragment() {
         // Required empty public constructor
     }
 
@@ -41,37 +41,37 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.pizza_fragment_menu, container, false);
-        increment0 = view.findViewById(R.id.increment0);
-        increment1 = view.findViewById(R.id.increment1);
-        increment2 = view.findViewById(R.id.increment2);
-        increment3 = view.findViewById(R.id.increment3);
-        increment4 = view.findViewById(R.id.increment4);
-        increment5 = view.findViewById(R.id.increment5);
-        increment6 = view.findViewById(R.id.increment6);
-        increment7 = view.findViewById(R.id.increment7);
+        View view = inflater.inflate(R.layout.fragment_sandwich_menu, container, false);
+        increment0 = view.findViewById(R.id.sincrement0);
+        increment1 = view.findViewById(R.id.sincrement1);
+        increment2 = view.findViewById(R.id.sincrement2);
+        increment3 = view.findViewById(R.id.sincrement3);
+        increment4 = view.findViewById(R.id.sincrement4);
+        increment5 = view.findViewById(R.id.sincrement5);
+        increment6 = view.findViewById(R.id.sincrement6);
+        increment7 = view.findViewById(R.id.sincrement7);
 
-        decrement0 = view.findViewById(R.id.decrement0);
-        decrement1 = view.findViewById(R.id.decrement1);
-        decrement2 = view.findViewById(R.id.decrement2);
-        decrement3 = view.findViewById(R.id.decrement3);
-        decrement4 = view.findViewById(R.id.decrement4);
-        decrement5 = view.findViewById(R.id.decrement5);
-        decrement6 = view.findViewById(R.id.decrement6);
-        decrement7 = view.findViewById(R.id.decrement7);
+        decrement0 = view.findViewById(R.id.sdecrement0);
+        decrement1 = view.findViewById(R.id.sdecrement1);
+        decrement2 = view.findViewById(R.id.sdecrement2);
+        decrement3 = view.findViewById(R.id.sdecrement3);
+        decrement4 = view.findViewById(R.id.sdecrement4);
+        decrement5 = view.findViewById(R.id.sdecrement5);
+        decrement6 = view.findViewById(R.id.sdecrement6);
+        decrement7 = view.findViewById(R.id.sdecrement7);
 
-        item0 = view.findViewById(R.id.item0quantity);
-        item1 = view.findViewById(R.id.item1quantity);
-        item2 = view.findViewById(R.id.item2quantity);
-        item3 = view.findViewById(R.id.item3quantity);
-        item4 = view.findViewById(R.id.item4quantity);
-        item5 = view.findViewById(R.id.item5quantity);
-        item6 = view.findViewById(R.id.item6quantity);
-        item7 = view.findViewById(R.id.item7quantity);
+        item0 = view.findViewById(R.id.sitem0quantity);
+        item1 = view.findViewById(R.id.sitem1quantity);
+        item2 = view.findViewById(R.id.sitem2quantity);
+        item3 = view.findViewById(R.id.sitem3quantity);
+        item4 = view.findViewById(R.id.sitem4quantity);
+        item5 = view.findViewById(R.id.sitem5quantity);
+        item6 = view.findViewById(R.id.sitem6quantity);
+        item7 = view.findViewById(R.id.sitem7quantity);
 
-        updateCart = view.findViewById(R.id.updateCartButton);
+        updateCart = view.findViewById(R.id.supdateCartButton);
 
-        specialRequest = view.findViewById(R.id.specialRequest);
+        specialRequest = view.findViewById(R.id.sspecialRequest);
 
         updateCart.setOnClickListener(this);
 
@@ -118,55 +118,55 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         hideSoftKeyboard(view);
 
         switch (view.getId()){
-            case R.id.decrement0:
+            case R.id.sdecrement0:
                 decrementValue(item0);
                 break;
-            case R.id.decrement1:
+            case R.id.sdecrement1:
                 decrementValue(item1);
                 break;
-            case R.id.decrement2:
+            case R.id.sdecrement2:
                 decrementValue(item2);
                 break;
-            case R.id.decrement3:
+            case R.id.sdecrement3:
                 decrementValue(item3);
                 break;
-            case R.id.decrement4:
+            case R.id.sdecrement4:
                 decrementValue(item4);
                 break;
-            case R.id.decrement5:
+            case R.id.sdecrement5:
                 decrementValue(item5);
                 break;
-            case R.id.decrement6:
+            case R.id.sdecrement6:
                 decrementValue(item6);
                 break;
-            case R.id.decrement7:
+            case R.id.sdecrement7:
                 decrementValue(item7);
                 break;
-            case R.id.increment0:
+            case R.id.sincrement0:
                 incrementValue(item0);
                 break;
-            case R.id.increment1:
+            case R.id.sincrement1:
                 incrementValue(item1);
                 break;
-            case R.id.increment2:
+            case R.id.sincrement2:
                 incrementValue(item2);
                 break;
-            case R.id.increment3:
+            case R.id.sincrement3:
                 incrementValue(item3);
                 break;
-            case R.id.increment4:
+            case R.id.sincrement4:
                 incrementValue(item4);
                 break;
-            case R.id.increment5:
+            case R.id.sincrement5:
                 incrementValue(item5);
                 break;
-            case R.id.increment6:
+            case R.id.sincrement6:
                 incrementValue(item6);
                 break;
-            case R.id.increment7:
+            case R.id.sincrement7:
                 incrementValue(item7);
                 break;
-            case R.id.updateCartButton:
+            case R.id.supdateCartButton:
                 pushItemsToCart();
                 break;
         }
@@ -180,7 +180,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         String request = new String(specialRequest.getText().toString());
         specialRequest.setText("");
 
-        addtoCart.getQuantities(numItems, 0, request);
+        addtoCart.getQuantities(numItems, Constants.SUB_OFFSET, request);
 
 
         for(int i=0;i<numItems.length;i++){

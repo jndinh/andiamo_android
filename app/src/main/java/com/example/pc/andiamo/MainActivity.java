@@ -12,13 +12,14 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
     ImageButton btnAccount;
     String currentFragment;
 
     int masterCart[] = new int[29];
+    String userSpecialRequests = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtCart = (TextView) findViewById(R.id.txt_cart);
         txtTracker = (TextView) findViewById(R.id.txt_delivery_tracker);
         btnAccount = (ImageButton) findViewById(R.id.btn_account);
-
         txtMenu = (TextView) findViewById(R.id.txt_menu);
     }
 
@@ -131,12 +131,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currentFragment = "PIZZA";
     }
 
+    private void fragmentSubs(){
+        Log.d("my_ fragmentSubs", "Entered Fragment Subs");
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SandwichMenuFragment subsFragment = new SandwichMenuFragment();
+        fragmentTransaction.replace(R.id.fragment_container, subsFragment, "subs");
+        fragmentTransaction.commit();
+
+        currentFragment = "SUBS";
+    }
+
     //--------------------------------End Fragment Switch Functions--------------------------------
 
     //--------------------------------Start Login/Register Functions--------------------------------
 
+    //loginRegister()
+    //  create a dialogFragment that showcases the 
     private void loginRegister() {
-
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
@@ -186,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         fragmentPizza();
                         break;
                     case R.id.subChoice:
-                        //fragmentSubs();
+                        fragmentSubs();
                         break;
                     case R.id.dndChoice:
                         fragmentDessertDrink();
@@ -200,8 +213,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void getQuanities(int[] cart, int offset) {
+    public void getQuantities(int[] cart, int offset, String requests) {
         if (cart.length > 0) {
+            userSpecialRequests += "\n" + requests;
+            Log.d("requests", userSpecialRequests);
             for(int i=0;i<cart.length;i++){
                 masterCart[i+offset] += cart[i];
                 Log.d("cart", Constants.MenuItem.values()[i + offset].getName() + " " + Integer.toString(cart[i]));
