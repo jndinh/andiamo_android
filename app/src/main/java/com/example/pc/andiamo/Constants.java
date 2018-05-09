@@ -3,7 +3,7 @@ package com.example.pc.andiamo;
 
 public class Constants {
     public static final int SPLASH_TIME_OUT = 2500;
-    public static final String WEB_SERVICE_URL = "ec2-34-239-146-206.compute-1.amazonaws.com:8003/webservice/";
+    public static final String WEB_SERVICE_URL = "http://ec2-34-239-146-206.compute-1.amazonaws.com:8003/webservice/";
     public static final String AUTHORIZATION_HEADER = "ZNLhfFrapAOTqjcWrseVne4PBfrHkcYG";
 
     public static final String LOGIN_EP = WEB_SERVICE_URL + "login";
