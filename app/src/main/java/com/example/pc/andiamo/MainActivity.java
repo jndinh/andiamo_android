@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (cart.length > 0) {
             for(int i=0;i<cart.length;i++){
                 masterCart[i+offset] += cart[i];
-                Log.d("cart", Constants.MenuItem.values()[i + offset].name() + " " + Integer.toString(cart[i]));
+                Log.d("cart", Constants.MenuItem.values()[i + offset].getName() + " " + Integer.toString(cart[i]));
             }
         }
 
