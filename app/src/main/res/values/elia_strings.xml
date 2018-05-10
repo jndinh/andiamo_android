@@ -3,4 +3,32 @@
     <string name="account_info">Account Info</string>
     <string name="not_logged_in">You are currently not logged in.</string>
 
+    <string name="username">\ Username</string>
+    <string name="password">\ Password</string>
+
+    <string name="login">LOGIN</string>
+
+    <string name="register_info">Create an account and receive exclusive offers, and save your
+        information for a fast-and-easy check-out.</string>
+
+    <string name="first_name">\ First Name</string>
+    <string name="last_name">\ Last Name</string>
+    <string name="street_address">\ Street Address</string>
+    <string name="apt">\ Apt/Ste/Rm</string>
+    <string name="city">\ City</string>
+    <string name="state">\ State</string>
+    <string name="zip">\ Zip</string>
+
+    <string name="enter_email">Enter your email address. This will be your username.</string>
+
+    <string name="email">\ Email</string>
+    <string name="confirm_email">\ Confirm Email</string>
+
+    <string name="create_a_pass">Create a password between 9 and 16 characters with at least 1
+        number.</string>
+
+    <string name="confirm_pass">\ Confirm Password</string>
+
+    <string name="create_acct">CREATE ACCOUNT</string>
+
 </resources>

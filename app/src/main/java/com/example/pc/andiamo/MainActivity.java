@@ -165,8 +165,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //--------------------------------Start Login/Register Functions--------------------------------
 
     //loginRegister()
-    //  create a dialogFragment that showcases the 
+    //  create a dialogFragment that showcases the LoginRegister Dialog
     private void loginRegister() {
+        FragmentManager fragmentManager = getFragmentManager();
+        LoginRegister loginRegisterDialog = new LoginRegister();
+        loginRegisterDialog.show(fragmentManager, "login_register");
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
