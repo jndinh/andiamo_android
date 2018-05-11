@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
+    boolean loggedIn;
+    String name, email, fullAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initializeUI();
         setListeners();
         fragmentHome();
+        setUserToNull();
     }
 
     //--------------------------------Start Initialization Functions--------------------------------
@@ -70,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtTracker.setOnClickListener(this);
         btnAccount.setOnClickListener(this);
         txtMenu.setOnClickListener(this);
+    }
+
+    //  setUserToNull
+    //      sets the user to null, upon starting the app
+    private void setUserToNull() {
+        loggedIn = false;
+        name = null;
+        email = null;
+        fullAddress = null;
     }
 
     //---------------------------------End Initialization Functions---------------------------------
@@ -166,10 +179,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //loginRegister()
     //  create a dialogFragment that showcases the LoginRegister Dialog
+    //
+    //  NEED TO IMPLEMENT: Pass a bundle that holds the user information if they are or are not
+    //      logged in --> https://stackoverflow.com/questions/42042248/how-to-pass-data-from-activity-to-dialogfragment
     private void loginRegister() {
-        FragmentManager fragmentManager = getFragmentManager();
-        LoginRegister loginRegisterDialog = new LoginRegister();
-        loginRegisterDialog.show(fragmentManager, "login_register");
+        if(!loggedIn) {
+            FragmentManager fragmentManager = getFragmentManager();
+            LoginRegister loginRegisterDialog = new LoginRegister();
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("LOGGED_IN", loggedIn);
+            loginRegisterDialog.setArguments(bundle);
+
+            loginRegisterDialog.show(fragmentManager, "login_register");
+        }
+        else {
+            FragmentManager fragmentManager = getFragmentManager();
+            LoginRegister loginRegisterDialog = new LoginRegister();
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("LOGGED_IN", loggedIn);
+            bundle.putString("NAME", "SOME_NAME");
+            bundle.putString("EMAIL", "SOME_EMAIL");
+            bundle.putString("ADDRESS", "SOME_ADDRESS");
+
+            loginRegisterDialog.setArguments(bundle);
+
+            loginRegisterDialog.show(fragmentManager, "login_register");
+        }
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
