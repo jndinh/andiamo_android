@@ -37,8 +37,6 @@ import static com.example.pc.andiamo.Constants.AUTHORIZATION_HEADER;
 import static com.example.pc.andiamo.Constants.REGISTER_EP;
 import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
-    //Button txtHome, txtMenu, txtCart, txtTracker;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
