@@ -37,7 +37,7 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <Button
+            <TextView
                 android:id="@+id/txt_home"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
@@ -55,7 +55,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/txt_menu"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
@@ -67,14 +67,13 @@
                 android:textAlignment="center"
                 android:text="@string/menu"
 
-
                 android:background="@drawable/textview_border"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/txt_cart"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
@@ -92,7 +91,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/txt_delivery_tracker"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
