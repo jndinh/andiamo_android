@@ -6,10 +6,29 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextLarge</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/PopupMenuTextSmall</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/background</item>
     </style>
+
+
+    <style name="PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">#EE666666</item>
+    </style>
+
+    <style name="PopupMenuTextSmall" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
+    <style name="PopupMenuTextLarge" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+    </style>
+
 
 </resources>

@@ -5,8 +5,14 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/solidslatebackground"
     tools:context="com.example.pc.andiamo.MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_veggies" />
 
     <LinearLayout
         android:id="@+id/linear1"
@@ -37,16 +43,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
-                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:text="@string/home"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
+                android:background="@drawable/textview_border"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
 
             <Button
                 android:id="@+id/txt_menu"
@@ -54,16 +61,18 @@
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
-                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:text="@string/menu"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
+
+                android:background="@drawable/textview_border"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
 
             <Button
                 android:id="@+id/txt_cart"
@@ -71,16 +80,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
-                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:text="@string/cart"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
+                android:background="@drawable/textview_border"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
 
             <Button
                 android:id="@+id/txt_delivery_tracker"
@@ -88,16 +98,17 @@
                 android:layout_width="0dp"
                 android:layout_weight="25"
                 android:gravity="center"
-                android:background="@drawable/textview_border"
                 android:fontFamily="@font/lato_regular"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="#ffffff"
                 android:textAlignment="center"
                 android:text="@string/delivery_tracker"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+
+                android:background="@drawable/textview_border"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
 
         </LinearLayout>
 
@@ -105,7 +116,9 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="75"/>
+            android:layout_weight="75"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
 
     </LinearLayout>
