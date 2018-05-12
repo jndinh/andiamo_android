@@ -11,8 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:layout_marginTop="2dp"
 
-        android:src="@drawable/avatar"/>
+        android:layout_gravity="center"
+
+        android:src="@drawable/avatar_dude_black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +30,8 @@
         android:text="@string/account_info"/>
 
     <TextView
+        android:id="@+id/txt_loginStatus"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -60,7 +65,7 @@
             android:layout_marginBottom="2dp"
 
             android:paddingStart="1dp"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
 
             android:hint="@string/username"
 
@@ -113,6 +118,8 @@
         android:background="@drawable/round_orange_button" />
 
     <TextView
+        android:id="@+id/txt_section1"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
@@ -310,6 +317,8 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txt_section2"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -379,6 +388,8 @@
     </LinearLayout>
 
     <TextView
+        android:id = "@+id/txt_section3"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"

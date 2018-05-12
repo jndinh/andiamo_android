@@ -15,6 +15,8 @@ public class Constants {
     public static final int SUB_OFFSET = 8;
     public static final int DES_OFFSET = 16;
 
+    public static final int PASS_LENGTH_MIN = 4, PASS_LENGTH_MAX = 16;
+
     // Menu Item Prices
     public enum MenuItem{
         // pizza

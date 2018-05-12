@@ -34,7 +34,9 @@ import static com.example.pc.andiamo.Constants.AUTHORIZATION_HEADER;
 import static com.example.pc.andiamo.Constants.REGISTER_EP;
 import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+        PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart,
+        SandwichMenuFragment.AddtoCart, LoginRegister.comms {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
     Button addMore;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
+    boolean loggedIn;
+    String name, email, fullAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initializeUI();
         setListeners();
         fragmentHome();
+        setUserToNull();
     }
 
     //--------------------------------Start Initialization Functions--------------------------------
@@ -78,6 +84,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtTracker.setOnClickListener(this);
         btnAccount.setOnClickListener(this);
         txtMenu.setOnClickListener(this);
+    }
+
+    //  setUserToNull
+    //      sets the user to null, upon starting the app
+    private void setUserToNull() {
+        loggedIn = false;
+        name = null;
+        email = null;
+        fullAddress = null;
     }
 
     //---------------------------------End Initialization Functions---------------------------------
@@ -174,10 +189,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //loginRegister()
     //  create a dialogFragment that showcases the LoginRegister Dialog
+    //
+    //  NEED TO IMPLEMENT: Pass a bundle that holds the user information if they are or are not
+    //      logged in --> https://stackoverflow.com/questions/42042248/how-to-pass-data-from-activity-to-dialogfragment
     private void loginRegister() {
-        FragmentManager fragmentManager = getFragmentManager();
-        LoginRegister loginRegisterDialog = new LoginRegister();
-        loginRegisterDialog.show(fragmentManager, "login_register");
+        if(!loggedIn) {
+            FragmentManager fragmentManager = getFragmentManager();
+            LoginRegister loginRegisterDialog = new LoginRegister();
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("LOGGED_IN", loggedIn);
+            loginRegisterDialog.setArguments(bundle);
+
+            loginRegisterDialog.show(fragmentManager, "login_register");
+        }
+        else {
+            FragmentManager fragmentManager = getFragmentManager();
+            LoginRegister loginRegisterDialog = new LoginRegister();
+
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("LOGGED_IN", loggedIn);
+            bundle.putString("NAME", name);
+            bundle.putString("EMAIL", email);
+            bundle.putString("ADDRESS", fullAddress);
+
+            loginRegisterDialog.setArguments(bundle);
+
+            loginRegisterDialog.show(fragmentManager, "LOGIN_REGISTER");
+        }
     }
 
     //---------------------------------End Login/Register Functions---------------------------------
@@ -286,7 +325,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    
+    @Override
+    public void loginMethod(String username_, String password_) {
+        Log.d("LOGINMETHOD", "IN\n\nUsername: " + username_ + "\nPassword: " + password_);
+
+        email = "Email: " + username_;
+
+        //PERFORM LOGIN
+
+        Login login = new Login(username_, password_);
+        login.execute();
+    }
+
+    @Override
+    public void registerMethod(String firstName_, String lastName_, String street_, String apt_,
+                               String city_, String state_, String zip_, String email_,
+                               String password_) {
+        name = "Name: " + firstName_ + " " + lastName_;
+        email = "Email: " + email_;
+        fullAddress = "Address: " + street_ + ", " + apt_ + "\n\t" + city_ + ", " + state_ + " " + zip_;
+
+        Log.d("REGISTERMETHOD", "IN\n\n" + name + "\n" + email + "\nPassword: "
+                + password_ + "\n" + fullAddress);
+
+        //PERFORM REGISTER
+
+        Register register;
+        if(apt_.length() != 0) {
+            register = new Register(firstName_, lastName_, email_, password_, street_, city_, state_, zip_, apt_);
+        }
+        else {
+            register = new Register(firstName_, lastName_, email_, password_, street_, city_, state_, zip_);
+        }
+        register.execute();
+    }
+
+
     //---------------------------------WEB ASYNC SERVICES---------------------------------
     /**
      * To use this, simply call: new Register(fname, lname, email, password, street_address, city, state, zip_code).execute();
@@ -381,6 +455,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (result) {
                 Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_SHORT).show();
+                loggedIn = true;
 
             } else {
                 try {
@@ -402,6 +477,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         String email;
         String password;
+        JSONObject jsonObject;
 
         Login(String email, String password) {
             this.email = email;
@@ -433,15 +509,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String strResponse = response.body().string();
                 final int code = response.code();
 
+                jsonObject = new JSONObject(strResponse);
+                Log.d("JSONObject", jsonObject.toString());
+
                 Log.d("webtag", strResponse);
 
                 if (code == 200) {
-                    return true;
+                    if(Integer.parseInt(jsonObject.getString("status")) == 0) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
                 }
-
-                return false;
+                else {
+                    return false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (JSONException e) {
+                Log.d("JSONException", e.toString());
             }
 
             return false;
@@ -453,10 +540,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (result) {
                 Toast.makeText(getApplicationContext(), "Logged in.", Toast.LENGTH_SHORT).show();
+                setData(jsonObject);
             } else {
                 Toast.makeText(getApplicationContext(), "Invalid email/password.", Toast.LENGTH_SHORT).show();
             }
 
+        }
+    }
+
+    private void setData(JSONObject jsonObject) {
+        try {
+            JSONObject temp = jsonObject.getJSONObject("data");
+
+            name = "Name: " + temp.getString("firstname") + " " + temp.getString("lastname");
+            if(String.valueOf(temp.get("line_number")).matches("null")) {
+                fullAddress = "Address: " + temp.getString("street_address") + ", "
+                        + "\n\t\t\t" + temp.getString("city") + ", "
+                        + temp.getString("state") + " " + temp.getString("zip_code");
+            }
+            else {
+                fullAddress = "Address: " + temp.getString("street_address") + ", "
+                        + temp.getString("line_number") + "\n\t\t\t"
+                        + temp.getString("city") + ", " + temp.getString("state")
+                        + " " + temp.getString("zip_code");
+            }
+            loggedIn = true;
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
