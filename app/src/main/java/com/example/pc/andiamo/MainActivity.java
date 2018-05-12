@@ -287,7 +287,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loginMethod(String username_, String password_) {
         Log.d("LOGINMETHOD", "IN\n\nUsername: " + username_ + "\nPassword: " + password_);
 
+        email = "Email: " + username_;
+
         //PERFORM LOGIN
+
+        Login login = new Login(username_, password_);
+        login.execute();
     }
 
     @Override
@@ -302,6 +307,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 + password_ + "\n" + fullAddress);
 
         //PERFORM REGISTER
+
+        Register register;
+        if(apt_.length() != 0) {
+            register = new Register(firstName_, lastName_, email_, password_, street_, city_, state_, zip_, apt_);
+        }
+        else {
+            register = new Register(firstName_, lastName_, email_, password_, street_, city_, state_, zip_);
+        }
+        register.execute();
     }
 
 
@@ -399,6 +413,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (result) {
                 Toast.makeText(getApplicationContext(), "Successfully registered.", Toast.LENGTH_SHORT).show();
+                loggedIn = true;
 
             } else {
                 try {
@@ -420,6 +435,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         String email;
         String password;
+        JSONObject jsonObject;
 
         Login(String email, String password) {
             this.email = email;
@@ -451,15 +467,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String strResponse = response.body().string();
                 final int code = response.code();
 
+                jsonObject = new JSONObject(strResponse);
+                Log.d("JSONObject", jsonObject.toString());
+
                 Log.d("webtag", strResponse);
 
                 if (code == 200) {
-                    return true;
+                    if(Integer.parseInt(jsonObject.getString("status")) == 0) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
                 }
-
-                return false;
+                else {
+                    return false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (JSONException e) {
+                Log.d("JSONException", e.toString());
             }
 
             return false;
@@ -471,10 +498,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (result) {
                 Toast.makeText(getApplicationContext(), "Logged in.", Toast.LENGTH_SHORT).show();
+                setData(jsonObject);
             } else {
                 Toast.makeText(getApplicationContext(), "Invalid email/password.", Toast.LENGTH_SHORT).show();
             }
 
+        }
+    }
+
+    private void setData(JSONObject jsonObject) {
+        try {
+            JSONObject temp = jsonObject.getJSONObject("data");
+
+            name = "Name: " + temp.getString("firstname") + " " + temp.getString("lastname");
+            if(String.valueOf(temp.get("line_number")).matches("null")) {
+                fullAddress = "Address: " + temp.getString("street_address") + ", "
+                        + "\n\t\t\t" + temp.getString("city") + ", "
+                        + temp.getString("state") + " " + temp.getString("zip_code");
+            }
+            else {
+                fullAddress = "Address: " + temp.getString("street_address") + ", "
+                        + temp.getString("line_number") + "\n\t\t\t"
+                        + temp.getString("city") + ", " + temp.getString("state")
+                        + " " + temp.getString("zip_code");
+            }
+            loggedIn = true;
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

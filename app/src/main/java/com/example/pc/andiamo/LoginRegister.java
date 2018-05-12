@@ -51,10 +51,10 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         }
         else {
             View view = inflater.inflate(R.layout.user_info, container, false);
-            initializeUI(view, loggedIn);
             name = bundle.getString("NAME");
             email = bundle.getString("EMAIL");
             address = bundle.getString("ADDRESS");
+            initializeUI(view, loggedIn);
             return view;
         }
     }
@@ -129,6 +129,7 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         //      true: listener on a logout button
         //      false: currentSetup
         if(!loggedIn) {
+            Log.d("SETTING LISTENERS", "\n\nloggedIn: " + String.valueOf(loggedIn));
             setListeners();
         }
     }
@@ -348,8 +349,10 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         super.onPause();
 
         //destroy listeners
-        btnLogin.setOnClickListener(null);
-        btnCreateAccount.setOnClickListener(null);
+        if(!loggedIn) {
+            btnLogin.setOnClickListener(null);
+            btnCreateAccount.setOnClickListener(null);
+        }
     }
 
     //INTERFACE TO WORK WITH ACTIVITY
