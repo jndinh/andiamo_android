@@ -118,6 +118,8 @@
         android:background="@drawable/round_orange_button" />
 
     <TextView
+        android:id="@+id/txt_section1"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
@@ -315,6 +317,8 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txt_section2"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -384,6 +388,8 @@
     </LinearLayout>
 
     <TextView
+        android:id = "@+id/txt_section3"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"

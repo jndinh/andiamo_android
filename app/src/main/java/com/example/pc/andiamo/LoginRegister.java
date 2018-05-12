@@ -21,7 +21,7 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
 
     private Button btnLogin, btnCreateAccount;
 
-    private TextView txtLoginStatus;
+    private TextView txtLoginStatus, txtSection1, txtSection2, txtSection3;
 
     //UI variables user_info.xml
     private TextView txtName, txtEmail, txtAddress;
@@ -66,6 +66,9 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
     private void initializeUI(View view, boolean loggedIn) {
         if(!loggedIn) {
             txtLoginStatus = view.findViewById(R.id.txt_loginStatus);
+            txtSection1 = view.findViewById(R.id.txt_section1);
+            txtSection2 = view.findViewById(R.id.txt_section2);
+            txtSection3 = view.findViewById(R.id.txt_section3);
 
             eTxtUsername = view.findViewById(R.id.eTxt_username);
             eTxtPassword = view.findViewById(R.id.eTxt_password);
@@ -156,9 +159,9 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         switch (RETURN_CODE) {
             case 0:
                 //input is sanitized, login
+                //IMPLEMENT
                 break;
             case 1:
-                //input is not sanitized, display error
                 invalidLoginInput();
                 break;
         }
@@ -227,11 +230,115 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
     //startCreateAccount
     //  begins the creation of the account
     private void startCreateAccount() {
-        getRegisterInfo();
+        int RETURN_CODE = getRegisterInfo();
+        switch (RETURN_CODE) {
+            case 0:
+                //REGISTER
+                break;
+            case 1:
+                section1Invalid();
+                break;
+            case 2:
+                section2Invalid();
+                break;
+            case 3:
+                section3Invalid();
+                break;
+        }
     }
 
-    private void getRegisterInfo() {
-        boolean validInput = false;
+    //getRegisterInfo
+    //  gets the users info from the register section
+    //  RETURN CODES:
+    //      | 0 = VALID INPUT | 1 = SECTION 1 INVALID | 2 = EMAIL INVALID |
+    //      | 3 = PASSWORD INVALID |
+    private int getRegisterInfo() {
+        int RETURN_CODE = 0;
+
+        firstName = eTxtFirstName.getText().toString();
+        lastName = eTxtLastName.getText().toString();
+        street = eTxtStreet.getText().toString();
+        apt = eTxtApt.getText().toString();
+        city = eTxtCity.getText().toString();
+        state = eTxtState.getText().toString();
+        zip = eTxtZip.getText().toString();
+        if(firstName.length() == 0 || lastName.length() == 0 || street.length() == 0 ||
+                city.length() == 0 || state.length() == 0 || zip.length() == 0) {
+            return 1;
+        }
+
+        email = eTxtEmail.getText().toString();
+        confirmEmail = eTxtConfirmEmail.getText().toString();
+        if(email.length() == 0 || confirmEmail.length() == 0 || !email.matches(confirmEmail)) {
+            return 2;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return 2;
+        }
+
+        createPassword = eTxtCreatePassword.getText().toString();
+        confirmPassword = eTxtConfirmPassword.getText().toString();
+        if(createPassword.length() < Constants.PASS_LENGTH_MIN ||
+                createPassword.length() > Constants.PASS_LENGTH_MAX ||
+                confirmPassword.length() < Constants.PASS_LENGTH_MIN ||
+                confirmPassword.length() > Constants.PASS_LENGTH_MAX ||
+                !createPassword.matches(confirmPassword)) {
+            return 3;
+        }
+
+        return RETURN_CODE;
+    }
+
+    private void section1Invalid() {
+        txtSection1.post(new Runnable() {
+            @Override
+            public void run() {
+                txtSection1.setText(R.string.section1Invalid);
+                txtSection1.setTextColor(Color.RED);
+            }
+        });
+        txtSection1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txtSection1.setText(R.string.register_info);
+                txtSection1.setTextColor(Color.BLACK);
+            }
+        }, 3000);
+    }
+
+    private void section2Invalid() {
+        txtSection2.post(new Runnable() {
+            @Override
+            public void run() {
+                txtSection2.setText(R.string.section2Invalid);
+                txtSection2.setTextColor(Color.RED);
+            }
+        });
+        txtSection2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txtSection2.setText(R.string.enter_email);
+                txtSection2.setTextColor(Color.BLACK);
+            }
+        }, 2500);
+    }
+
+    private void section3Invalid() {
+        txtSection3.post(new Runnable() {
+            @Override
+            public void run() {
+                txtSection3.setText(R.string.invalid_input2);
+                txtSection3.setTextColor(Color.RED);
+            }
+        });
+        txtSection3.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                txtSection3.setText(R.string.create_a_pass);
+                txtSection3.setTextColor(Color.BLACK);
+            }
+        }, 2500);
     }
 
     @Override

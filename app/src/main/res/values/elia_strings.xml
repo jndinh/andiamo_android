@@ -25,7 +25,7 @@
     <string name="email">\ Email</string>
     <string name="confirm_email">\ Confirm Email</string>
 
-    <string name="create_a_pass">Create a password between 9 and 16 characters with at least 1
+    <string name="create_a_pass">Create a password between 4\-16 characters with at least 1
         number.</string>
 
     <string name="confirm_pass">\ Confirm Password</string>
@@ -35,4 +35,7 @@
     <string name="invalid_input1">Invalid Input: Please use a valid email</string>
     <string name="invalid_input2">Passwords must be letters/numbers and 4\-16 characters</string>
 
+    <string name="section1Invalid">Please fill out all information correctly. Apt/Ste/Rm is not
+        required</string>
+    <string name="section2Invalid">Please enter a valid email. Be sure they match.</string>
 </resources>
