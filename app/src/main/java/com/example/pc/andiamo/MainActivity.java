@@ -260,8 +260,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         checkout.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                pw.dismiss();
-                                Toast.makeText(getApplicationContext(), "Your order was placed!", Toast.LENGTH_LONG).show();
+                                if(!loggedIn) {
+                                    loginRegister();
+                                }
+                                else{
+                                    pw.dismiss();
+                                    LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                                    final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
+                                            (ViewGroup) findViewById(R.id.checkout_shell));
+                                    PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 500, true);
+                                    checkoutWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
+                                }
                             }
                         });
                     } catch (Exception e) {
