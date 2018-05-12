@@ -158,8 +158,8 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         int RETURN_CODE = getLoginInfo();
         switch (RETURN_CODE) {
             case 0:
-                //input is sanitized, login
-                //IMPLEMENT
+                ((comms)getActivity()).loginMethod(username, password);
+                dismiss();
                 break;
             case 1:
                 invalidLoginInput();
@@ -182,8 +182,8 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
             boolean validEmail = Patterns.EMAIL_ADDRESS.matcher(username).matches();
 
             if(validEmail) {
-                if(password.length() > Constants.PASS_LENGTH_MIN &&
-                        password.length() < Constants.PASS_LENGTH_MAX &&
+                if(password.length() >= Constants.PASS_LENGTH_MIN &&
+                        password.length() <= Constants.PASS_LENGTH_MAX &&
                         password.matches("[A-Za-z0-9]+")) {
                     validInput = 0;
                 }
@@ -233,7 +233,9 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         int RETURN_CODE = getRegisterInfo();
         switch (RETURN_CODE) {
             case 0:
-                //REGISTER
+                ((comms)getActivity()).registerMethod(firstName, lastName, street, apt, city,
+                        state, zip, email, createPassword);
+                dismiss();
                 break;
             case 1:
                 section1Invalid();
@@ -321,7 +323,7 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
                 txtSection2.setText(R.string.enter_email);
                 txtSection2.setTextColor(Color.BLACK);
             }
-        }, 2500);
+        }, 3000);
     }
 
     private void section3Invalid() {
@@ -338,7 +340,7 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
                 txtSection3.setText(R.string.create_a_pass);
                 txtSection3.setTextColor(Color.BLACK);
             }
-        }, 2500);
+        }, 3000);
     }
 
     @Override
@@ -349,4 +351,13 @@ public class LoginRegister extends DialogFragment implements View.OnClickListene
         btnLogin.setOnClickListener(null);
         btnCreateAccount.setOnClickListener(null);
     }
+
+    //INTERFACE TO WORK WITH ACTIVITY
+    public interface comms {
+        void loginMethod(String username_, String password_);
+        void registerMethod(String firstName_, String lastName_, String street_, String apt_,
+                            String city_, String state_, String zip_, String email_,
+                            String password_);
+    }
+
 }

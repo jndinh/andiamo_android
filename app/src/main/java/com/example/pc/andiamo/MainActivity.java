@@ -29,7 +29,9 @@ import static com.example.pc.andiamo.Constants.REGISTER_EP;
 import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+        PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart,
+        SandwichMenuFragment.AddtoCart, LoginRegister.comms {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
     ImageButton btnAccount;
@@ -199,13 +201,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             Bundle bundle = new Bundle();
             bundle.putBoolean("LOGGED_IN", loggedIn);
-            bundle.putString("NAME", "SOME_NAME");
-            bundle.putString("EMAIL", "SOME_EMAIL");
-            bundle.putString("ADDRESS", "SOME_ADDRESS");
+            bundle.putString("NAME", name);
+            bundle.putString("EMAIL", email);
+            bundle.putString("ADDRESS", fullAddress);
 
             loginRegisterDialog.setArguments(bundle);
 
-            loginRegisterDialog.show(fragmentManager, "login_register");
+            loginRegisterDialog.show(fragmentManager, "LOGIN_REGISTER");
         }
     }
 
@@ -281,7 +283,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    
+    @Override
+    public void loginMethod(String username_, String password_) {
+        Log.d("LOGINMETHOD", "IN\n\nUsername: " + username_ + "\nPassword: " + password_);
+
+        //PERFORM LOGIN
+    }
+
+    @Override
+    public void registerMethod(String firstName_, String lastName_, String street_, String apt_,
+                               String city_, String state_, String zip_, String email_,
+                               String password_) {
+        name = "Name: " + firstName_ + " " + lastName_;
+        email = "Email: " + email_;
+        fullAddress = "Address: " + street_ + ", " + apt_ + "\n\t" + city_ + ", " + state_ + " " + zip_;
+
+        Log.d("REGISTERMETHOD", "IN\n\n" + name + "\n" + email + "\nPassword: "
+                + password_ + "\n" + fullAddress);
+
+        //PERFORM REGISTER
+    }
+
+
     //---------------------------------WEB ASYNC SERVICES---------------------------------
     /**
      * To use this, simply call: new Register(fname, lname, email, password, street_address, city, state, zip_code).execute();

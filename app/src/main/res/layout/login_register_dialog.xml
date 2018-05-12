@@ -65,7 +65,7 @@
             android:layout_marginBottom="2dp"
 
             android:paddingStart="1dp"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
 
             android:hint="@string/username"
 
