@@ -9,9 +9,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +37,12 @@ import static com.example.pc.andiamo.Constants.LOGIN_EP;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart, SandwichMenuFragment.AddtoCart {
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
+    Button addMore;
     ImageButton btnAccount;
     String currentFragment;
 
+    int itemCount = 0;
+    int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -197,14 +197,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.txt_cart:
                 if(!currentFragment.equals("CART")) {
                    // fragmentCart();
-                    PopupWindow pw;
+                    final PopupWindow pw;
+                    Button addMore;
+                    Button checkout;
                     try {
                         // We need to get the instance of the LayoutInflater
                         LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View layout = inflater.inflate(R.layout.popup,
+                        final View layout = inflater.inflate(R.layout.cart_popup,
                                 (ViewGroup) findViewById(R.id.cart_shell));
                         pw = new PopupWindow(layout, 800, 1000, true);
                         pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+                        addMore = (Button) layout.findViewById(R.id.addmore_button);
+                        addMore.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                pw.dismiss();
+                                if (lastMenuChoice == 0)fragmentPizza();
+                                else if (lastMenuChoice == 1)fragmentSubs();
+                                else fragmentDessertDrink();
+                            }
+                        });
+                        checkout = (Button) layout.findViewById(R.id.checkout_button);
+                        checkout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                pw.dismiss();
+                                Toast.makeText(getApplicationContext(), "Your order was placed!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -236,12 +256,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (menuItem.getItemId()){
                     case R.id.pizzaChoice:
                         fragmentPizza();
+                        lastMenuChoice = 0;
                         break;
                     case R.id.subChoice:
                         fragmentSubs();
+                        lastMenuChoice = 1;
                         break;
                     case R.id.dndChoice:
                         fragmentDessertDrink();
+                        lastMenuChoice = 2;
                         break;
                 }
                 return true;
