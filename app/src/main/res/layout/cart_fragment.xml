@@ -39,25 +39,39 @@
         android:text="ADD MORE ITEMS"
         android:padding="10dp"/>
 
+    <TextView
+        android:id="@+id/special_request_text"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@id/cart_special_requests"
+        android:text="Special Requests:"
+        android:textColor="@android:color/black"
+        android:paddingTop="5dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/cart_special_requests"
+        android:fontFamily="@font/lato_regular"
+        android:background="@drawable/textview_border_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/checkout_button"/>
+
     <ScrollView
         android:id="@+id/cart_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/textlines"
         android:layout_below="@id/cart_label"
-        android:layout_above="@id/checkout_button">
+        android:layout_above="@id/special_request_text">
 
         <LinearLayout
             android:id="@+id/cart_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hello"/>
-
-
 
         </LinearLayout>
 

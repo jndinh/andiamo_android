@@ -18,11 +18,15 @@ import org.w3c.dom.Text;
  */
 public class CartItemFragment extends Fragment{
 
+    private CartItemComm mainActivity;
+
     private ImageButton increment;
     private ImageButton decrement;
+    private ImageButton removeButton;
     private TextView quantityView;
     private TextView titleView;
 
+    private int index;
     private String title;
     private int quantity;
 
@@ -34,8 +38,9 @@ public class CartItemFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        title = args.getString("title", "");
-        quantity = args.getInt("quantity", 0);
+        index = args.getInt("INDEX", 0);
+        quantity = args.getInt("QUANTITY", 0);
+        title = Constants.MenuItem.values()[index].getName();
     }
 
     @Override
@@ -47,6 +52,8 @@ public class CartItemFragment extends Fragment{
         quantityView = (TextView) myView.findViewById(R.id.item_quantity);
         increment = (ImageButton) myView.findViewById(R.id.increment_item);
         decrement = (ImageButton) myView.findViewById(R.id.decrement_item);
+        removeButton = (ImageButton) myView.findViewById(R.id.remove_item_button);
+
         titleView.setText(title);
         quantityView.setText("" + quantity);
         increment.setOnClickListener(new View.OnClickListener() {
@@ -54,25 +61,45 @@ public class CartItemFragment extends Fragment{
             public void onClick(View view) {
                 quantity++;
                 quantityView.setText("" + quantity);
+                mainActivity.updateCartItem(index, true);
             }
         });
         decrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quantity--;
+                if (quantity > 0) quantity--;
                 quantityView.setText("" + quantity);
+                mainActivity.updateCartItem(index, false);
+            }
+        });
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.removeCartItem(index);
+                removeSelf();
             }
         });
         return myView;
     }
 
+    private void removeSelf(){
+        getParentFragment().getChildFragmentManager().beginTransaction().remove(this).commit();
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mainActivity = (CartItemComm) context;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public interface CartItemComm{
+        // when this item needs to be updated, it contacts the cartFragment, which in turn notifies the mainActivity
+        void updateCartItem(int index, boolean increment);
+        void removeCartItem(int index);
     }
 }

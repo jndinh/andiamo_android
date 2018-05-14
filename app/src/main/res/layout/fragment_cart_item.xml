@@ -13,7 +13,9 @@
         android:layout_alignParentLeft="true"
         android:paddingLeft="10dp"
         android:textSize="8pt"
-        android:text="My food item here" />
+        android:text="My food item here"
+        android:layout_toLeftOf="@id/decrement_item"
+        android:autoSizeTextType="uniform"/>
 
     <ImageButton
         android:id="@+id/decrement_item"

@@ -36,15 +36,14 @@ import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart,
-        SandwichMenuFragment.AddtoCart, LoginRegister.comms {
+        SandwichMenuFragment.AddtoCart, LoginRegister.comms, CartFragment.CartComm, CartItemFragment.CartItemComm{
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
     Button addMore;
     ImageButton btnAccount;
     String currentFragment;
 
-    int itemCount = 0;
-    int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
+    private int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -121,18 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
 
         currentFragment = "MENU";
-    }
-
-    private void fragmentCart() {
-        Log.d("my_ fragmentCart", "Entered Fragment Cart");
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CartFragment cartFragment = new CartFragment();
-        fragmentTransaction.replace(R.id.fragment_container, cartFragment);
-        fragmentTransaction.commit();
-
-        currentFragment = "CART";
     }
 
     private void fragmentTracker() {
@@ -235,44 +222,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.txt_cart:
                 if(!currentFragment.equals("CART")) {
-                   // fragmentCart();
-                    final PopupWindow pw;
-                    Button addMore;
-                    Button checkout;
+                    CartFragment cart;
                     try {
-                        // We need to get the instance of the LayoutInflater
-                        LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        final View layout = inflater.inflate(R.layout.cart_popup,
-                                (ViewGroup) findViewById(R.id.cart_shell));
-                        pw = new PopupWindow(layout, 800, 1000, true);
-                        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
-                        addMore = (Button) layout.findViewById(R.id.addmore_button);
-                        addMore.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                pw.dismiss();
-                                if (lastMenuChoice == 0)fragmentPizza();
-                                else if (lastMenuChoice == 1)fragmentSubs();
-                                else fragmentDessertDrink();
-                            }
-                        });
-                        checkout = (Button) layout.findViewById(R.id.checkout_button);
-                        checkout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(!loggedIn) {
-                                    loginRegister();
-                                }
-                                else{
-                                    pw.dismiss();
-                                    LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                                    final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
-                                            (ViewGroup) findViewById(R.id.checkout_shell));
-                                    PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 500, true);
-                                    checkoutWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
-                                }
-                            }
-                        });
+                        FragmentManager fragMan = getFragmentManager();
+                        cart = new CartFragment();
+                        Bundle bundle = new Bundle();
+                        // pass what's in the cart
+                        bundle.putIntArray("CART", masterCart);
+                        cart.setArguments(bundle);
+                        cart.show(fragMan, "cart_frag");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -579,5 +537,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
+    // CART INTERFACE METHODS
+    public void returnToMenu(){
+        if(lastMenuChoice == 0) fragmentPizza();
+        else if (lastMenuChoice == 1) fragmentSubs();
+        else if (lastMenuChoice == 2) fragmentDessertDrink();
+        else fragmentHome();
+    }
+    public boolean handleCheckout(){
+        if(!loggedIn) {
+            loginRegister();
+            return false;
+        }
+        else {
+            LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
+                    (ViewGroup) findViewById(R.id.checkout_shell));
+            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 500, true);
+            checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
+            return true;
+        }
+    }
+
+    public void updateCartItem(int index, boolean increment){
+        // if increment is set, increment the item count at index; otherwise must be a decrement
+        // if we decrement, make sure to check if we're at zero already
+        masterCart[index] = increment ? masterCart[index]+1 : (masterCart[index] == 0 ? masterCart[index] : masterCart[index]-1);
+    }
+    public void removeCartItem(int index){
+        masterCart[index] = 0;
+    }
+
 
 }
