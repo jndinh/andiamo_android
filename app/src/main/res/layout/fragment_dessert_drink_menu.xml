@@ -1,0 +1,970 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PizzaMenuFragment">
+
+    <!-- DESSERTS & DRINKS-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lobster_1_3"
+        android:text="Desserts &amp; Drinks"
+        android:textAlignment="center"
+        android:textColor="@color/andiamo_yellow"
+        android:textSize="36sp" />
+
+    <!-- .............-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster_1_3"
+            android:text=".................................."
+            android:textAlignment="center"
+            android:textColor="@color/andiamo_yellow"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+
+    <!-- START MENU-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            />
+
+        <!-- LEFT SIDE OF THE MENU-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ***********************CUPCAKES************************ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/cupcakes"
+                    android:textColor="@android:color/white"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="@string/cupcakes_price"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- RED VELVET -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/red_velvet"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/rvdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/rvquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/rvincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- VANILLA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/vanilla"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7.5dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/vandecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/vanquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/vanincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- CHOCOLATE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/chocolate"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/chocdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/chocquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/chocincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- KEY LIME -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/key_lime"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/keydecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/keyquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/keyincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- COOKIES AND CREAM -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/cookies_cream"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="9dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/creamdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/creamquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/creamincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- ***********************END CUPCAKES*********************** -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="175sp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+
+            <!-- ***********************COOKIES************************ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/cookies"
+                    android:textColor="@android:color/white"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="@string/cookies_price"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <!-- CHOCOLATE CHIP -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/chocolate_chip"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/ccdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/ccquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/ccincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- OATMEAL RAISIN -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/oatmeal"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/oatdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/oatquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/oatincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+
+
+
+            <!-- ***********************END COOKIES************************ -->
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="175sp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+
+            <!-- ***********************BROWNIES************************ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/brownie"
+                    android:textColor="@android:color/white"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="@string/brownie_price"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- SUPER CHOCOLATE CHUNK -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/chocolate_brownie"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="9dp" />
+
+                <ImageButton
+                    android:id="@+id/browniedecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/browniequantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/brownieincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+
+            <!-- ***********************END BROWNIES************************ -->
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="175sp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="match_parent" />
+
+        <!-- RIGHT SIDE OF THE MENU-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="5dp">
+
+            <!-- ***********************BEVERAGES************************ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/beverages"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+
+                <Space
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="@string/beverages_price"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- COKE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/coke"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/cokedecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/cokequantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/cokeincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- DIET COKE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/diet_coke"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/dietdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/dietquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/dietincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- SPRITE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/sprite"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/spritedecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/spritequantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/spriteincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- GINGERALE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/gingerale"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/gingerdecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/gingerquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/gingerincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- LEMONADE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/lemonade"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/desc_green"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:paddingBottom="7dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/lemondecrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/lemonquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/andiamo_yellow"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/lemonincrement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <!-- ***********************END BEVERAGES************************ -->
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="175sp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!-- ***********************UPDATE CART************************ -->
+    <RelativeLayout android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:id="@+id/updateCartButton"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/update_button"
+            android:fontFamily="@font/lato_regular"
+            android:text="Update\nCart"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
