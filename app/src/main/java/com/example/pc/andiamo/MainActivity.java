@@ -3,6 +3,8 @@ package com.example.pc.andiamo;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String currentFragment;
 
     private int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
+    private int orderCount = 0;
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -125,6 +128,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void fragmentTracker() {
+        startActivity(new Intent(MainActivity.this, TrackerPopup.class));
+        Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
+        currentFragment = "TRACKER";
+
+
+
+
+        /*
         Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -134,6 +145,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
 
         currentFragment = "TRACKER";
+        */
+        /*
+        Log.d("my_ fragmentTracker", "Entered Fragment Tracker");
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        TrackerFragment trackerFragment = new TrackerFragment();
+        fragmentTransaction.replace(R.id.fragment_container, trackerFragment);
+        fragmentTransaction.commit();
+
+        currentFragment = "TRACKER";
+        */
     }
 
     private void fragmentDessertDrink() {
@@ -557,15 +580,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
         else {
+            orderCount++;
             // return true if we proceeded to checkout, so we know to close the cart fragment
             LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
                     (ViewGroup) findViewById(R.id.checkout_shell));
             TextView orderTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
+            TextView orderNum = (TextView)  checkoutLayout.findViewById(R.id.order_number_text);
             String totalString = "Your total is $" + String.format("%.2f", calculateTotal()) + ".";
+            String orderString = "Your order number is " + orderCount + ". Thank you for ordering with Andiamo!";
             orderTotal.setText(totalString);
+            orderNum.setText(orderString);
             PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 600, true);
             checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
+            for (int i = 0; i < masterCart.length; i++)
+                masterCart[i] = 0;
             return true;
         }
     }
