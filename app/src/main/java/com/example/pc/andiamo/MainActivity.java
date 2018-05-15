@@ -2,19 +2,26 @@ package com.example.pc.andiamo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.os.AsyncTask;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -24,19 +31,21 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
 import static com.example.pc.andiamo.Constants.AUTHORIZATION_HEADER;
 import static com.example.pc.andiamo.Constants.REGISTER_EP;
 import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         PizzaMenuFragment.AddtoCart, DessertDrinkMenuFragment.AddtoCart,
-        SandwichMenuFragment.AddtoCart, LoginRegister.comms {
+        SandwichMenuFragment.AddtoCart, LoginRegister.comms, CartFragment.CartComm, CartItemFragment.CartItemComm{
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
+    Button addMore;
     ImageButton btnAccount;
     String currentFragment;
 
+    private int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -113,18 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
 
         currentFragment = "MENU";
-    }
-
-    private void fragmentCart() {
-        Log.d("my_ fragmentCart", "Entered Fragment Cart");
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        CartFragment cartFragment = new CartFragment();
-        fragmentTransaction.replace(R.id.fragment_container, cartFragment);
-        fragmentTransaction.commit();
-
-        currentFragment = "CART";
     }
 
     private void fragmentTracker() {
@@ -227,7 +224,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.txt_cart:
                 if(!currentFragment.equals("CART")) {
-                    fragmentCart();
+                    CartFragment cart;
+                    try {
+                        FragmentManager fragMan = getFragmentManager();
+                        cart = new CartFragment();
+                        Bundle bundle = new Bundle();
+                        // pass what's in the cart
+                        bundle.putIntArray("CART", masterCart);
+                        bundle.putString("SPECIAL", userSpecialRequests);
+                        bundle.putFloat("TOTAL", calculateTotal());
+                        cart.setArguments(bundle);
+                        cart.show(fragMan, "cart_frag");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case R.id.txt_delivery_tracker:
@@ -256,12 +266,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (menuItem.getItemId()){
                     case R.id.pizzaChoice:
                         fragmentPizza();
+                        lastMenuChoice = 0;
                         break;
                     case R.id.subChoice:
                         fragmentSubs();
+                        lastMenuChoice = 1;
                         break;
                     case R.id.dndChoice:
                         fragmentDessertDrink();
+                        lastMenuChoice = 2;
                         break;
                 }
                 return true;
@@ -274,7 +287,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void getQuantities(int[] cart, int offset, String requests) {
         if (cart.length > 0) {
-            userSpecialRequests += "\n" + requests;
+            // do a little bit of cleaning up here -- if the new "request" is blank, don't add it,
+            // and make sure we trim any extra lines/spaces the user may have added after their request
+            userSpecialRequests += (requests.trim().equals("") ? "" : (requests.trim() + "\n"));
             Log.d("requests", userSpecialRequests);
             for(int i=0;i<cart.length;i++){
                 masterCart[i+offset] += cart[i];
@@ -528,5 +543,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
+    // CART INTERFACE METHODS
+    public void returnToMenu(){
+        if(lastMenuChoice == 0) fragmentPizza();
+        else if (lastMenuChoice == 1) fragmentSubs();
+        else if (lastMenuChoice == 2) fragmentDessertDrink();
+        else fragmentHome();
+    }
+    public boolean handleCheckout(){
+        if(!loggedIn) {
+            loginRegister();
+            return false;
+        }
+        else {
+            // return true if we proceeded to checkout, so we know to close the cart fragment
+            LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
+                    (ViewGroup) findViewById(R.id.checkout_shell));
+            TextView orderTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
+            String totalString = "Your total is $" + String.format("%.2f", calculateTotal()) + ".";
+            orderTotal.setText(totalString);
+            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 600, true);
+            checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
+            return true;
+        }
+    }
+    public void updateSpecialRequests(String newText){
+        userSpecialRequests = newText;
+    }
+
+    public void updateCartItem(int index, int newVal){
+        // if increment is set, increment the item count at index; otherwise must be a decrement
+        // if we decrement, make sure to check if we're at zero already
+        masterCart[index] = newVal;
+    }
+    public void removeCartItem(int index){
+        masterCart[index] = 0;
+    }
+
+    // utility method to calculate total cost of everything in the cart
+    public float calculateTotal(){
+        float sum = 0;
+        for (int i = 0; i < masterCart.length; i++){
+            sum += Constants.MenuItem.values()[i].getPrice() * masterCart[i];
+        }
+        return sum;
+    }
+
 
 }

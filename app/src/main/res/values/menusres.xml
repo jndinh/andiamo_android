@@ -6,7 +6,7 @@
     <string name="desserts">DESSERTS &amp; DRINKS</string>
 
     <!-- PIZZAS -->
-    <string name="pizza_description">Our family-friendls pizzas are all 18" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request.</string>
+    <string name="pizza_description">Our family-friendly pizzas are all 18\" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request.</string>
     <string name="sub_description">All of our bread is baked in house in the morning in our fire brick oven! We locally source all of our produce to ensure that it is GMO and pesticide free. Gluten free bread is available upon request.</string>
 
     <string name="p0_name">Your Basic Pie</string>
@@ -55,7 +55,7 @@
     <string name="s2_desc">Marinated Brisket, Sauteed Onions, Au Jus, on Weck (Roll dusted in sea salt and caraway seeds</string>
     <string name="s2_price">$12.99</string>
 
-    <string name="s3_name">Bacon, Lettuce, and Bacon</string>
+    <string name="s3_name">Bacon, Lettuce, and Tomato</string>
     <string name="s3_desc">Bacon, Lettuce, Tomato, Pesto Mayo on our Touscany Toast</string>
     <string name="s3_price">$10.99</string>
 
@@ -71,7 +71,7 @@
     <string name="s6_desc">Parmesean Crusted Chicken Breat, Provolone, Arugula, Tomato, Pesto on our Tuscany Toast</string>
     <string name="s6_price">$11.99</string>
 
-    <string name="s7_name">The Fat Rueben</string>
+    <string name="s7_name">The Fat Reuben</string>
     <string name="s7_desc">Half a Pound Corned Beef, Sauerkraut, Thousand Island on our Tuscany Toast</string>
     <string name="s7_price">$12.99</string>
 
