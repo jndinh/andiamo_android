@@ -113,6 +113,7 @@ public class CartItemFragment extends Fragment{
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateViews(0);
                 mainActivity.removeCartItem(index);
                 removeSelf();
             }

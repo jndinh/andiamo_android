@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String currentFragment;
 
     private int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
+    private int orderCount = 0;
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -557,15 +558,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
         else {
+            orderCount++;
             // return true if we proceeded to checkout, so we know to close the cart fragment
             LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
                     (ViewGroup) findViewById(R.id.checkout_shell));
             TextView orderTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
+            TextView orderNum = (TextView)  checkoutLayout.findViewById(R.id.order_number_text);
             String totalString = "Your total is $" + String.format("%.2f", calculateTotal()) + ".";
+            String orderString = "Your order number is " + orderCount + ". Thank you for ordering with Andiamo!";
             orderTotal.setText(totalString);
+            orderNum.setText(orderString);
             PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 600, true);
             checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
+            for (int i = 0; i < masterCart.length; i++)
+                masterCart[i] = 0;
             return true;
         }
     }
