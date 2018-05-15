@@ -19,7 +19,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TrackerPopup"
+            android:theme = "@style/AppTheme.CustomTheme"></activity>
+
         <activity android:name=".MainActivity" />
+
+
+
+
 
     </application>
 </manifest>
