@@ -31,11 +31,11 @@ public class Constants {
         // subs and sandwiches
         IS("Italian Sub", "Salami, Ham, Mortadella, Provolone, Tomato, Arugula, Onions, Oil & Vinegar on a Baguette", 10.99f, 8),
         IC("The Italian Club", "Roast Beef, Ham, Salami, Mozzarella, Provolone, Tomato, Salt & Pepper on our Touscany Toast", 10.99f, 9),
-        BOW("Beed on Wick", "Marinated Brisket, Sauteed Onions, Au Jus, on Wick (Roll dusted in sea salt and caraway seeds", 12.99f, 10),
+        BOW("Beef on Weck", "Marinated Brisket, Sauteed Onions, Au Jus, on Wick (Roll dusted in sea salt and caraway seeds)", 12.99f, 10),
         BLT("Bacon, Lettuce, and Tomato", "Bacon, Lettuce, Tomato, Pesto Mayo on our Touscany Toast", 11.99f, 11),
         MARS("Margherita Sandwich", "Mozzarella, Fresh Tomatoes, Marinara, Pesto, Spinach, Basil on a Baguette", 15.99f, 12),
         PCS("Philly Cheesesteak", "Steak, Sauteed Onions, Provolone, Red and Yellow Peppers on a Baguette", 11.99f, 13),
-        CPS("Chicken Pesto Sub", "Parmesean Crusted Chicken Breat, Provolone, Arugula, Tomato, Pesto on our Tuscany Toast", 12.99f, 14),
+        CPS("Chicken Pesto Sub", "Parmesean Crusted Chicken Breast, Provolone, Arugula, Tomato, Pesto on our Tuscany Toast", 12.99f, 14),
         TFR("The Fat Reuben", "Half a Pound Corned Beef, Sauerkraut, Thousand Island on our Tuscany Toast", 14.99f, 15),
         // drinks and deserts
         RV("Red Velvet", "", 3.99f, 16),

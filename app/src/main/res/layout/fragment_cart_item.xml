@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/textlines"
+    tools:context="com.example.pc.andiamo.CartItemFragment">
+
+    <TextView
+        android:id="@+id/item_title"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="10dp"
+        android:textSize="8pt"
+        android:text="My food item here"
+        android:layout_toLeftOf="@id/item_cost"
+        android:autoSizeTextType="uniform"/>
+
+    <TextView
+        android:id="@+id/item_cost"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:textSize="7pt"
+        android:text="$100.00"
+        android:layout_toLeftOf="@id/decrement_item"
+        android:autoSizeTextType="uniform"/>
+
+    <ImageButton
+        android:id="@+id/decrement_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:layout_toLeftOf="@+id/item_quantity"
+        android:src="@android:drawable/arrow_down_float"/>
+
+    <EditText
+        android:id="@+id/item_quantity"
+        android:inputType="numberPassword"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/increment_item"
+        android:text="10"
+        android:padding="10dp"
+        android:background="@drawable/textview_border_white"/>
+
+    <ImageButton
+        android:id="@+id/increment_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_weight="1"
+        android:layout_toLeftOf="@+id/remove_item_button"
+        android:src="@android:drawable/arrow_up_float"/>
+
+    <ImageButton
+        android:id="@+id/remove_item_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_delete"
+        android:paddingRight="10dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
