@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -229,6 +231,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Bundle bundle = new Bundle();
                         // pass what's in the cart
                         bundle.putIntArray("CART", masterCart);
+                        bundle.putString("SPECIAL", userSpecialRequests);
+                        bundle.putFloat("TOTAL", calculateTotal());
                         cart.setArguments(bundle);
                         cart.show(fragMan, "cart_frag");
                     } catch (Exception e) {
@@ -283,7 +287,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void getQuantities(int[] cart, int offset, String requests) {
         if (cart.length > 0) {
-            userSpecialRequests += "\n" + requests;
+            // do a little bit of cleaning up here -- if the new "request" is blank, don't add it,
+            // and make sure we trim any extra lines/spaces the user may have added after their request
+            userSpecialRequests += (requests.trim().equals("") ? "" : (requests.trim() + "\n"));
             Log.d("requests", userSpecialRequests);
             for(int i=0;i<cart.length;i++){
                 masterCart[i+offset] += cart[i];
@@ -551,22 +557,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
         else {
+            // return true if we proceeded to checkout, so we know to close the cart fragment
             LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
                     (ViewGroup) findViewById(R.id.checkout_shell));
-            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 500, true);
+            TextView orderTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
+            String totalString = "Your total is $" + String.format("%.2f", calculateTotal()) + ".";
+            orderTotal.setText(totalString);
+            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 600, true);
             checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
             return true;
         }
     }
+    public void updateSpecialRequests(String newText){
+        userSpecialRequests = newText;
+    }
 
-    public void updateCartItem(int index, boolean increment){
+    public void updateCartItem(int index, int newVal){
         // if increment is set, increment the item count at index; otherwise must be a decrement
         // if we decrement, make sure to check if we're at zero already
-        masterCart[index] = increment ? masterCart[index]+1 : (masterCart[index] == 0 ? masterCart[index] : masterCart[index]-1);
+        masterCart[index] = newVal;
     }
     public void removeCartItem(int index){
         masterCart[index] = 0;
+    }
+
+    // utility method to calculate total cost of everything in the cart
+    public float calculateTotal(){
+        float sum = 0;
+        for (int i = 0; i < masterCart.length; i++){
+            sum += Constants.MenuItem.values()[i].getPrice() * masterCart[i];
+        }
+        return sum;
     }
 
 

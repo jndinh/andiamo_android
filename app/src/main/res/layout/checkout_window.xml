@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/checkout_shell"
-    android:background="@android:color/white"
+    android:background="#ffdddddd"
     android:orientation="vertical"
     android:padding="10sp">
 
@@ -21,6 +21,20 @@
         android:padding="10dp"/>
 
     <TextView
+        android:id="@+id/order_total_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order total goes here"
+        android:gravity="center"
+        android:fontFamily="@font/lato_regular"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:textSize="8pt"
+        android:layout_below="@id/order_placed_text"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"/>
+
+    <TextView
         android:id="@+id/order_number_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,9 +42,9 @@
         android:gravity="center"
         android:fontFamily="@font/lato_regular"
         android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="#404040"
         android:textSize="8pt"
-        android:layout_below="@id/order_placed_text"
+        android:layout_below="@id/order_total_text"
         android:layout_centerHorizontal="true"
         android:padding="10dp"/>
 

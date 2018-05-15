@@ -1,5 +1,6 @@
 package com.example.pc.andiamo;
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -10,24 +11,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * Created by jlagnese on 5/13/2018.
  */
 
-public class CartFragment extends DialogFragment{
+public class CartFragment extends DialogFragment implements CartItemFragment.ItemToCartComm{
 
     CartComm mainActivity;
 
     private int[] cartItems;
+    private String initSpecialRequest;
+    private float initTotal;
     private Button addMore;
     private Button checkout;
+    private EditText specialRequests;
+    private TextView totalView;
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
         mainActivity = (CartComm) context;
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null)
+        {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.MATCH_PARENT;
+            dialog.getWindow().setLayout(width, height);
+        }
     }
 
     @Nullable
@@ -40,13 +60,20 @@ public class CartFragment extends DialogFragment{
 
         Bundle bundle = getArguments();
         cartItems = bundle.getIntArray("CART");
+        initSpecialRequest = bundle.getString("SPECIAL");
+        initTotal = bundle.getFloat("TOTAL");
         View view = inflater.inflate(R.layout.cart_fragment, container, false);
         addCartItems();
+        totalView = (TextView) view.findViewById(R.id.total_cost);
+        updateTotal(initTotal);
+        specialRequests = (EditText) view.findViewById(R.id.cart_special_requests);
+        specialRequests.setText(initSpecialRequest);
         addMore = (Button) view.findViewById(R.id.addmore_button);
         addMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
+                mainActivity.updateSpecialRequests(specialRequests.getText().toString());
                 mainActivity.returnToMenu();
             }
         });
@@ -79,6 +106,10 @@ public class CartFragment extends DialogFragment{
     public interface CartComm{
         void returnToMenu();
         boolean handleCheckout(); // returns true if checkout occurred
-        //void updateCart(int index, boolean increment);
+        void updateSpecialRequests(String newText);
+    }
+
+    public void updateTotal(float total){
+        totalView.setText("$" + String.format("%.2f", total));
     }
 }

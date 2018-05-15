@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/cart_shell"
-    android:background="@android:color/white"
+    android:background="#70dddddd"
     android:orientation="vertical"
     android:padding="10sp">
     
@@ -10,14 +10,39 @@
         android:id="@+id/cart_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CART"
+        android:text="Cart"
         android:fontFamily="@font/lato_regular"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="16pt"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:padding="10dp"/>
+        android:paddingBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/total_text"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/special_request_text"
+        android:layout_toLeftOf="@id/total_cost"
+        android:layout_marginRight="10dp"
+        android:text="Total:"
+        android:textColor="@android:color/black"
+        android:paddingTop="5dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/total_cost"
+        android:fontFamily="@font/lato_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/special_request_text"
+        android:text="$1000.00"
+        android:textColor="@android:color/black"
+        android:paddingTop="5dp"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/checkout_button"
@@ -27,6 +52,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="CHECK OUT"
+        android:textColor="@android:color/white"
+        android:background="@drawable/round_orange_button"
         android:padding="10dp"/>
 
     <Button
@@ -37,6 +64,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:text="ADD MORE ITEMS"
+        android:textColor="@android:color/white"
+        android:background="@drawable/round_orange_button"
         android:padding="10dp"/>
 
     <TextView
@@ -48,16 +77,17 @@
         android:layout_above="@id/cart_special_requests"
         android:text="Special Requests:"
         android:textColor="@android:color/black"
-        android:paddingTop="5dp"
         android:textStyle="bold"/>
 
-    <TextView
+    <EditText
         android:id="@+id/cart_special_requests"
         android:fontFamily="@font/lato_regular"
         android:background="@drawable/textview_border_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/checkout_button"/>
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:layout_above="@id/checkout_button" />
 
     <ScrollView
         android:id="@+id/cart_list_view"
@@ -65,7 +95,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/textlines"
         android:layout_below="@id/cart_label"
-        android:layout_above="@id/special_request_text">
+        android:layout_above="@id/total_text">
 
         <LinearLayout
             android:id="@+id/cart_list"
