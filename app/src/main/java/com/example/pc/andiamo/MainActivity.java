@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SandwichMenuFragment.AddtoCart, LoginRegister.comms, CartFragment.CartComm, CartItemFragment.CartItemComm{
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
+    Button addMore;
     ImageButton btnAccount;
     String currentFragment;
 
