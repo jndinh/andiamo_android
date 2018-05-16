@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/andiamo_android.iml" filepath="$PROJECT_DIR$/andiamo_android.iml" />
+      <module fileurl="file://C:\Users\PC\joe\andiamo_android.iml" filepath="C:\Users\PC\joe\andiamo_android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\jlagnese\Documents\CMSC 628\Project\andiamo_android\joe.iml" filepath="C:\Users\jlagnese\Documents\CMSC 628\Project\andiamo_android\joe.iml" />
     </modules>
   </component>
 </project>
