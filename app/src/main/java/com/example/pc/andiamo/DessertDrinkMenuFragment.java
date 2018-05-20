@@ -143,8 +143,10 @@ public class DessertDrinkMenuFragment extends Fragment implements View.OnClickLi
 
     private void incrementValue(TextView t){
         int current = Integer.valueOf(t.getText().toString());
-        current++;
-        t.setText(Integer.toString(current));
+        if(current < 50) {
+            current++;
+            t.setText(Integer.toString(current));
+        }
     }
 
     private void decrementValue(TextView t){

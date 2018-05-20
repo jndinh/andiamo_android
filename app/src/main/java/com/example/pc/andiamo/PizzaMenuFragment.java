@@ -20,6 +20,7 @@ import java.util.ArrayList;
  */
 public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
 
+    // increment and decrement buttons for each item
     private ImageButton increment0, increment1, increment2, increment3, increment4, increment5, increment6, increment7;
     private ImageButton decrement0, decrement1, decrement2, decrement3, decrement4, decrement5, decrement6, decrement7;
     private TextView item0, item1, item2, item3, item4, item5, item6, item7 ;
@@ -27,8 +28,10 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
     private Button updateCart;
     private EditText specialRequest;
 
+    // interface for MainActivity
     private AddtoCart addtoCart;
 
+    // quantities and their text views
     int numItems[] = new int[8];
     ArrayList<TextView> itemQuantities = new ArrayList<>();
 
@@ -73,6 +76,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
 
         specialRequest = view.findViewById(R.id.specialRequest);
 
+        // set on click listeners
         updateCart.setOnClickListener(this);
 
         increment0.setOnClickListener(this);
@@ -172,28 +176,37 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    // pushes local values to master cart in Main Activity
+    // then resets local values
     private void pushItemsToCart() {
+        // set local values and then reset display value
         for(int i=0;i<itemQuantities.size();i++){
             numItems[i] = Integer.parseInt(itemQuantities.get(i).getText().toString());
             itemQuantities.get(i).setText("0");
         }
+        // append special requests
         String request = new String(specialRequest.getText().toString());
         specialRequest.setText("");
 
+        // interact with the interface
         addtoCart.getQuantities(numItems, 0, request);
 
-
+        // reset local values
         for(int i=0;i<numItems.length;i++){
             numItems[i] = 0;
         }
     }
 
+    // called when the value is to be incremented
     private void incrementValue(TextView t){
         int current = Integer.valueOf(t.getText().toString());
-        current++;
-        t.setText(Integer.toString(current));
+        if(current < 50) {
+            current++;
+            t.setText(Integer.toString(current));
+        }
     }
 
+    // called when the value is to be decremented
     private void decrementValue(TextView t){
         int current = Integer.valueOf(t.getText().toString());
         if(current > 0) {
@@ -202,6 +215,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    // define the interface
     public interface AddtoCart{
         void getQuantities(int cart[], int offset, String requests);
     }
@@ -212,6 +226,7 @@ public class PizzaMenuFragment extends Fragment implements View.OnClickListener{
         addtoCart = (AddtoCart) context;
     }
 
+    // hide the keyboard when touched outside of keyboard
     public static void hideSoftKeyboard(View view) {
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
