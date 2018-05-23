@@ -1,6 +1,7 @@
 package com.example.pc.andiamo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -140,6 +141,14 @@ public class TrackerPopup extends Activity implements View.OnClickListener{
 
         image4.setImageResource(R.drawable.tracker_3dotsbetween_yellow);
         image5.setImageResource(R.drawable.trackericon_03_yellow);
+
+
+    }
+    public void onDestroy() {
+
+        super.onDestroy();
+        startActivity(new Intent(TrackerPopup.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
 
 
     }

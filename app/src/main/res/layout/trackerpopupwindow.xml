@@ -8,22 +8,28 @@
         android:id="@+id/exitButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="Exit" />
+        android:layout_toEndOf="@+id/textView"
+        android:background="@android:color/transparent"
+        android:text="X"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/domine_regular"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/trackingEditText"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="123dp"
         android:layout_marginStart="54dp"
         android:ems="10"
-        android:text="Tracking Number"
+        android:fontFamily="@font/domine_regular"
+        android:hint="Tracking Number"
         android:textColor="@android:color/white"
-        android:textSize="10dp" />
+        android:textSize="15dp"
+        android:textColorHint="@android:color/white"/>
 
     <Button
         android:id="@+id/trackButton"
@@ -31,6 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/trackingEditText"
         android:layout_toStartOf="@+id/exitButton"
+        android:fontFamily="@font/domine_regular"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
         android:text="Track" />
 
     <ImageView
@@ -76,12 +85,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:fontFamily="@font/lobster_1_3"
+        android:text="Enter a Tracking Number"
         android:textColor="@android:color/white"
-        android:text="Enter a Tracking Number" />
+        android:textSize="30sp" />
+
+
 
 
 </RelativeLayout>
