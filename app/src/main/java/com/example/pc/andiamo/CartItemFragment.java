@@ -48,8 +48,11 @@ public class CartItemFragment extends Fragment{
             }
             else{
                 // user edited quantity, update new values
-                if(quantityView.getTag() == null)
-                    updateViews(Integer.parseInt(s.toString()));
+                if(quantityView.getTag() == null) {
+                    // set user input to 0 if < 0, and cap it at 50 if > 0
+                    int inputVal = Integer.parseInt(s.toString());
+                    updateViews((inputVal >= 0 ? (inputVal <= 50 ? inputVal : 50) : 0));
+                }
             }
         }
 
@@ -101,7 +104,7 @@ public class CartItemFragment extends Fragment{
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateViews(quantity + 1);
+                updateViews((quantity < 50 ? quantity + 1 : quantity));
             }
         });
         decrement.setOnClickListener(new View.OnClickListener() {
