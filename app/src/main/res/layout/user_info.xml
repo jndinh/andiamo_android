@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+
+    android:background="#70dddddd">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_marginTop="2dp"
+
+        android:layout_gravity="center"
+
+        android:src="@drawable/avatar_dude_black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+
+        android:gravity="center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:text="@string/account_info"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+
+        android:gravity="center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:text="@string/welcome_back"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+
+        android:gravity="start|center_horizontal"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="14sp"
+        android:text="PLACEHOLDER"/>
+
+    <TextView
+        android:id="@+id/txt_email"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+
+        android:gravity="start|center_horizontal"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="14sp"
+        android:text="PLACEHOLDER"/>
+
+    <TextView
+        android:id="@+id/txt_address"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:gravity="start|center_horizontal"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="14sp"
+        android:text="PLACEHOLDER"/>
+
+
+</LinearLayout>

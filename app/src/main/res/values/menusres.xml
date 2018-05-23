@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DROP DOWN MENU -->
+    <string name="pizza">PIZZA</string>
+    <string name="subs">SANDWICHES</string>
+    <string name="desserts">DESSERTS &amp; DRINKS</string>
+
+    <!-- PIZZAS -->
+    <string name="pizza_description">Our family-friendly pizzas are all 18\" fresh from our fire brick oven! The zesty marinara sauce uses locally sourced tomatoes, and none of our produce contains GMOs. Gluten-free crust is available upon request.</string>
+    <string name="sub_description">All of our bread is baked in house in the morning in our fire brick oven! We locally source all of our produce to ensure that it is GMO and pesticide free. Gluten free bread is available upon request.</string>
+
+    <string name="p0_name">Your Basic Pie</string>
+    <string name="p0_desc">Zesty Marinara Sauce, Mozzarella &amp; Parmesian</string>
+    <string name="p0_price">$10.99</string>
+
+    <string name="p1_name">Bruschetta Pizza</string>
+    <string name="p1_desc">Thick crust, Rich Tomato Sauce, Bruschetta, Oil &amp; Vinegar, Parmesian</string>
+    <string name="p1_price">$10.99</string>
+
+    <string name="p2_name">Pepperoni</string>
+    <string name="p2_desc">Zesty Marinara, Pepperoni, Mozzarella &amp; Parmesian</string>
+    <string name="p2_price">$12.99</string>
+
+    <string name="p3_name">Green and White</string>
+    <string name="p3_desc">Classic White Sauce, Roasted Spinach &amp; Artichokes, Basil, Mozzarella &amp; Parmesian</string>
+    <string name="p3_price">$11.99</string>
+
+    <string name="p4_name">Mostly Meat</string>
+    <string name="p4_desc">Zesty Marinara, Pulled Chicken, Sausage, Pepperoni, Crumbled Bacon, Mozzarella &amp; Cheddar</string>
+    <string name="p4_price">$15.99</string>
+
+    <string name="p5_name">Veggie Supreme</string>
+    <string name="p5_desc">Zesty Marinara, Roasted Peppers, Sun-dried Tomatoes, Olives, Onions, Basil, Mozzarella</string>
+    <string name="p5_price">$11.99</string>
+
+    <string name="p6_name">Margherita</string>
+    <string name="p6_desc">Zesty Marinara, Fresh Tomatoes, Basil, Olive Oil, Salt &amp; Pepper, Fresh Mozzarella</string>
+    <string name="p6_price">$12.99</string>
+
+    <string name="p7_name">Spicy Hawaiian</string>
+    <string name="p7_desc">Sweet &amp; Spicy BBQ Marinara, Bacon, Ham, Fresh Pineapple, Mozzarella &amp; Cheddar</string>
+    <string name="p7_price">$14.99</string>
+
+
+    <!-- SUBS -->
+    <string name="s0_name">Italian Sub</string>
+    <string name="s0_desc">Salami, Ham, Mortadella, Provolone, Tomato, Arugula, Onions, Oil &amp; Vinegar on a Baguette</string>
+    <string name="s0_price">$10.99</string>
+
+    <string name="s1_name">The Italian Club</string>
+    <string name="s1_desc">Roast Beef, Ham, Salami, Mozzarella, Provolone, Tomato, Salt &amp; Pepper on our Touscany Toast</string>
+    <string name="s1_price">$11.99</string>
+
+    <string name="s2_name">Beef on Weck</string>
+    <string name="s2_desc">Marinated Brisket, Sauteed Onions, Au Jus, on Weck (Roll dusted in sea salt and caraway seeds</string>
+    <string name="s2_price">$12.99</string>
+
+    <string name="s3_name">Bacon, Lettuce, and Tomato</string>
+    <string name="s3_desc">Bacon, Lettuce, Tomato, Pesto Mayo on our Touscany Toast</string>
+    <string name="s3_price">$10.99</string>
+
+    <string name="s4_name">Margherita Sandwich</string>
+    <string name="s4_desc">Mozzarella, Fresh Tomatoes, Marinara, Pesto, Spinach, Basil on a Baguette</string>
+    <string name="s4_price">$10.99</string>
+
+    <string name="s5_name">Philly Cheesesteak</string>
+    <string name="s5_desc">Steak, Sauteed Onions, Provolone, Red and Yellow Peppers on a Baguette</string>
+    <string name="s5_price">$13.99</string>
+
+    <string name="s6_name">Chicken Pesto Sub</string>
+    <string name="s6_desc">Parmesean Crusted Chicken Breat, Provolone, Arugula, Tomato, Pesto on our Tuscany Toast</string>
+    <string name="s6_price">$11.99</string>
+
+    <string name="s7_name">The Fat Reuben</string>
+    <string name="s7_desc">Half a Pound Corned Beef, Sauerkraut, Thousand Island on our Tuscany Toast</string>
+    <string name="s7_price">$12.99</string>
+
+
+    <!-- CUPCAKES -->
+    <string name="cupcakes">Cupcakes</string>
+    <string name="cupcakes_price">$3.99 Each</string>
+    <string name="red_velvet">Red Velvet</string>
+    <string name="vanilla">Vanilla</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="key_lime">Key Lime</string>
+    <string name="cookies_cream">Cookies &amp; Cream</string>
+
+    <!-- BEVERAGES -->
+    <string name="beverages">Drinks(20z)</string>
+    <string name="beverages_price">$2.99 Each</string>
+    <string name="coke">Coke</string>
+    <string name="diet_coke">Diet Coke</string>
+    <string name="sprite">Sprite</string>
+    <string name="gingerale">Gingerale</string>
+    <string name="lemonade">Lemonade</string>
+
+    <!-- COOKIES -->
+    <string name="cookies">Cookies(3)</string>
+    <string name="cookies_price">$2.99 Per Order</string>
+    <string name="chocolate_chip">Chocolate Chip</string>
+    <string name="oatmeal">Oatmeal Raisin</string>
+
+    <!-- BROWNIES -->
+    <string name="brownie">Brownies(2)</string>
+    <string name="brownie_price">$2.99 Per Order</string>
+    <string name="chocolate_brownie">Super Chocolate Chunk</string>
+
+    <!-- COLORS -->
+    <color name="andiamo_yellow">#ffba00</color>
+    <color name="desc_green">#79e439</color>
+    <color name="update_button">#cc541e</color>
+
+</resources>

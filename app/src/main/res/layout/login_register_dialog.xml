@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+
+    android:background="#70dddddd">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_marginTop="2dp"
+
+        android:layout_gravity="center"
+
+        android:src="@drawable/avatar_dude_black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+
+        android:gravity="center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:text="@string/account_info"/>
+
+    <TextView
+        android:id="@+id/txt_loginStatus"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+
+        android:layout_marginStart="10dp"
+        
+        android:gravity="start|center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="@string/not_logged_in"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_username"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textEmailAddress"
+
+            android:hint="@string/username"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_password"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textPassword"
+
+            android:hint="@string/password"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+    
+    <Button
+        android:id="@+id/btn_login"
+
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#fff"
+        android:textStyle="bold"
+
+        android:text="@string/login"
+
+        android:background="@drawable/round_orange_button" />
+
+    <TextView
+        android:id="@+id/txt_section1"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        android:gravity="start|center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="@string/register_info"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_firstName"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/first_name"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_lastName"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/last_name"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_streetAddress"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/street_address"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_aptNumber"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/apt"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_city"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/city"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_state"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/state"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_zip"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="text"
+
+            android:hint="@string/zip"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_section2"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        android:gravity="start|center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="@string/enter_email"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_email"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textEmailAddress"
+
+            android:hint="@string/email"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_confirmEmail"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textEmailAddress"
+
+            android:hint="@string/confirm_email"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id = "@+id/txt_section3"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        android:gravity="start|center"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="@string/create_a_pass"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="100">
+
+        <EditText
+            android:id="@+id/eTxt_passwordCreate"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textPassword"
+
+            android:hint="@string/password"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+
+            android:background="@drawable/edit_text_styling"/>
+
+        <EditText
+            android:id="@+id/eTxt_confirmPasswordCreate"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+
+            android:paddingStart="1dp"
+            android:inputType="textPassword"
+
+            android:hint="@string/confirm_pass"
+
+            android:textColor="#000"
+            android:fontFamily="@font/lato_regular"
+            android:textSize="16sp"
+
+            android:background="@drawable/edit_text_styling"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_createAccount"
+
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+
+        android:fontFamily="@font/lato_regular"
+        android:textColor="#fff"
+        android:textStyle="bold"
+
+        android:text="@string/create_acct"
+
+        android:background="@drawable/round_orange_button" />
+
+</LinearLayout>
