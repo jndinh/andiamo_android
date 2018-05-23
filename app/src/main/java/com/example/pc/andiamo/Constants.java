@@ -9,7 +9,7 @@ public class Constants {
     public static final String LOGIN_EP = WEB_SERVICE_URL + "login";
     public static final String REGISTER_EP = WEB_SERVICE_URL + "register";
     public static final String STORES_EP = WEB_SERVICE_URL + "get_stores";
-    public static final String PLACE_ORDER_EP = WEB_SERVICE_URL + "place_orders";
+    public static final String PLACE_ORDER_EP = WEB_SERVICE_URL + "place_order";
     public static final String GET_ORDER_EP = WEB_SERVICE_URL + "get_order";
 
     public static final int SUB_OFFSET = 8;

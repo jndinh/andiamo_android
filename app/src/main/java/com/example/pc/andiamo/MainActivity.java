@@ -12,6 +12,8 @@ import android.os.AsyncTask;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
@@ -33,6 +35,7 @@ import okhttp3.Response;
 
 
 import static com.example.pc.andiamo.Constants.AUTHORIZATION_HEADER;
+import static com.example.pc.andiamo.Constants.PLACE_ORDER_EP;
 import static com.example.pc.andiamo.Constants.REGISTER_EP;
 import static com.example.pc.andiamo.Constants.LOGIN_EP;
 
@@ -41,12 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SandwichMenuFragment.AddtoCart, LoginRegister.comms, CartFragment.CartComm, CartItemFragment.CartItemComm{
 
     TextView txtHome, txtCart, txtTracker, txtMenu;
-    Button addMore;
     ImageButton btnAccount;
     String currentFragment;
 
     private int lastMenuChoice = 0; // 0 = pizza ; 1 = subs ; 2 = desserts/drinks
-    private int orderCount = 0;
     int masterCart[] = new int[29];
     String userSpecialRequests = "";
 
@@ -444,6 +445,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private class PlaceOrder extends AsyncTask<Void, Void, Boolean>
+    {
+
+        JSONObject jsonObject;
+        int orderID = -1;
+        float orderTotal = calculateTotal();
+
+        PlaceOrder() {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            //this method will be running on background thread so don't update UI from here
+            //do your long running http tasks here,you don't want to pass argument and u can access the parent class' variable url over here
+
+            OkHttpClient client = new OkHttpClient();
+            // just using 0s for now since we're not grabbing user location
+            String query = "latitude=" + 0 + "&longitude=" + 0 + "&total_cost=" + orderTotal;
+
+            // building get request
+            MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+            RequestBody body = RequestBody.create(mediaType, query);
+            Request request = new Request.Builder()
+                    .url(PLACE_ORDER_EP)
+                    .post(body)
+                    .addHeader("AUTHORIZATION", AUTHORIZATION_HEADER)
+                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                    .build();
+
+            // parsing response
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.body() == null) return false;
+                String strResponse = response.body().string();
+                final int code = response.code();
+
+                jsonObject = new JSONObject(strResponse);
+                Log.d("JSONObject", jsonObject.toString());
+
+                Log.d("webtag", strResponse);
+
+                if (code == 200) {
+                    if(Integer.parseInt(jsonObject.getString("status")) == 0) {
+                        return false;
+                    }
+                    else {
+                        orderID = jsonObject.getJSONObject("data").getInt("order_number");
+                        return true;
+                    }
+                }
+                else {
+                    return false;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                Log.d("JSONException", e.toString());
+            }
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
+                    (ViewGroup) findViewById(R.id.checkout_shell));
+            TextView textTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
+            TextView orderNum = (TextView)  checkoutLayout.findViewById(R.id.order_number_text);
+            String totalString = "Your total is $" + String.format("%.2f", orderTotal) + ".";
+            String orderString = "Your order number is " + orderID + ". Thank you for ordering with Andiamo!";
+            textTotal.setText(totalString);
+            orderNum.setText(orderString);
+            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+            checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
+            for (int i = 0; i < masterCart.length; i++)
+                masterCart[i] = 0;
+        }
+    }
+
     /**
      * To use this, simply call: new Login(email, password).execute();
      */
@@ -558,21 +641,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         }
         else {
-            orderCount++;
             // return true if we proceeded to checkout, so we know to close the cart fragment
-            LayoutInflater checkoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View checkoutLayout = checkoutInflater.inflate(R.layout.checkout_window,
-                    (ViewGroup) findViewById(R.id.checkout_shell));
-            TextView orderTotal = (TextView) checkoutLayout.findViewById(R.id.order_total_text);
-            TextView orderNum = (TextView)  checkoutLayout.findViewById(R.id.order_number_text);
-            String totalString = "Your total is $" + String.format("%.2f", calculateTotal()) + ".";
-            String orderString = "Your order number is " + orderCount + ". Thank you for ordering with Andiamo!";
-            orderTotal.setText(totalString);
-            orderNum.setText(orderString);
-            PopupWindow checkoutWindow = new PopupWindow(checkoutLayout, 800, 600, true);
-            checkoutWindow.showAtLocation(checkoutLayout, Gravity.CENTER, 0, 0);
-            for (int i = 0; i < masterCart.length; i++)
-                masterCart[i] = 0;
+            PlaceOrder newOrder = new PlaceOrder();
+            newOrder.execute();
             return true;
         }
     }
